@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root{
+    --clr:#222326;
+}
+.loader {
+    width: 100%;
+    /* Adjust as needed */
+    height: 100%;
+    /* Adjust as needed */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000e3;
+    z-index: 99999;
+}
+
+.animated-path {
+    width: 80%;
+    height: 50%;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: fillPath ease 5s infinite;
+    transition: cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.animated-path #s{ animation-delay: 1s;}
+.animated-path #t{ animation-delay: 2s;}
+.animated-path #u{ animation-delay: 3s;}
+.animated-path #d{ animation-delay: 4s;}
+.animated-path #i{ animation-delay: 5s;}
+.animated-path #o{ animation-delay: 6s;}
+.animated-path #x {
+    stroke: #ff0000;
+animation-delay: 6s;
+}
+
+@keyframes fillPath {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+
+    5% {
+        stroke-dashoffset: 975;
+    }
+
+    10% {
+        stroke-dashoffset: 950;
+    }
+
+    20% {
+        stroke-dashoffset: 925;
+    }
+
+    30% {
+        stroke-dashoffset: 900;
+    }
+
+    40% {
+        stroke-dashoffset: 900;
+    }
+
+    50% {
+        stroke-dashoffset: 850;
+    }
+
+    60% {
+        stroke-dashoffset: 800;
+    }
+
+    70% {
+        stroke-dashoffset: 550;
+    }
+
+    80% {
+        stroke-dashoffset: 500;
+    }
+
+    90% {
+        stroke-dashoffset: 450;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+@keyframes showMenu {
+    0% {
+        clip-path: circle(0% at 100% 100%);
+    }
+
+    50% {
+        clip-path: circle(70% at 75% 75%);
+    }
+
+    100% {
+        clip-path: circle(150% at 50% 50%);
+    }
+}
+
+@keyframes closeMenu {
+}
+
+@keyframes rotate{
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+     transform: rotate(360);
+    }
+}
+
+
+.rotation{
+    animation: rotate 6s ease infinite;
+    transform: translate(360);
+    transition: ease 1s;
+}
+
+.mobile-menu.show{
+    animation: showMenu 0.7s ease-out forwards;
+    transition: clip-path 0.8s ease-out linear cubic-bezier(0.86, 0, 0.07, 1);
+}
+.mobile-menu.close{
+    animation: closeMenu 0.7s ease-in forwards;
+    transition: clip-path 0.8s ease-in linear cubic-bezier(0.86, 0, 0.07, 1);
+}
+.line {
+    height: 1px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0), rgb(207, 0, 0), rgba(255, 255, 255, 0)) !important;
+}
+.navbar-toggler .icon .line {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(207, 0, 0), rgba(0, 0, 0, 0));
+    height: 2px;
+    width: 35px;
+    transition: transform 0.6s linear;
+    transform-origin: center center;
+    margin-bottom: 7px;
+}
+
+.navbar-toggler .icon.active .line1 {
+    transform: rotate(-765deg) translateY(5.5px);
+}
+
+.navbar-toggler .icon.active .line2 {
+    transform: rotate(765deg) translateY(-5.5px);
+}
+
+.navbar-toggler .icon.active .line3 {
+    display: none;
+}
+.navbar-nav {
+    padding-top: 5dvh;
+}
+
+.navbar-nav .navbar-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+/* This will change the scrollbar color */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #ff00002f;
+    border-radius: 10px;
+}
+
+/* This will change the thumb color and border-radius */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(65deg,rgba(114, 0, 0, 0.637),rgba(255, 0, 0, 0.856));
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(65deg, rgb(255, 51, 51), rgba(255, 0, 0, 0.856));
+}
+
+.hide-scrollbar::-webkit-scrollbar{
+    display: none;
+
+}
+
+.embla {
+    /* max-width: 52rem; */
+    margin: auto;
+    --slide-height: 19rem;
+    --slide-spacing: 1.5rem;
+    --slide-size: 45%;
+}
+
+.embla__viewport {
+    overflow: hidden;
+}
+
+.embla__container {
+    backface-visibility: hidden;
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    margin-right: 8px;
+    margin-left: 8px;
+    padding-left: var(--slide-spacing);
+    background: red;
+    border-radius: 30px;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.embla__slide__number {
+    box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+    border-radius: 1.8rem;
+    font-size: 4rem;
+    font-weight: 600;
+    display: flex;
+    color:#fff;
+    align-items: center;
+    justify-content: center;
+    height: var(--slide-height);
+}
+
+.embla__controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-top: 1.8rem;
+}
+
+.embla__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.embla__button {
+    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+    width: 3.6rem;
+    height: 3.6rem;
+    z-index: 1;
+    border-radius: 50%;
+    color: var(--text-body);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.embla__button:disabled {
+    color: var(--detail-high-contrast);
+}
+
+.embla__button__svg {
+    width: 35%;
+    height: 35%;
+}
