@@ -83,7 +83,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       audio: "/a4.mp3"
     },
   ]
-  const { audio, setAudio } = useContext(AudioContext)
+  const { setAudio } = useContext(AudioContext)
+  const { setPlaylist } = useContext(AudioContext)
 
   return (
     <section className="embla w-full">
@@ -92,11 +93,17 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           {
             tracks.map(track => (
 
-              <div className="max-h-50 h-50 items-start justify-start min-w-45 flex flex-col relative cursor-pointer rounded-2xl overflow-hidden">
+              <div key={track.title} className="max-h-50 h-50 items-start justify-start min-w-45 flex flex-col relative cursor-pointer rounded-2xl overflow-hidden"
+                onClick={() => {
+                  setAudio(track);
+                  setPlaylist(tracks);
+                }}
+              >
                 <img
+                  src={track.avatar}
                   key={track.audio}
                   className=" w-full h-full object-cover"
-                  onClick={() => { setAudio(track) }} src={track.avatar} alt=""
+                  alt=""
                 />
                 <div className="z-900 opacity-0 w-full h-full bg-[#000000a6] items-center justify-center hover:opacity-100 flex flex-col space-y-3 absolute top-0 left-0 right-0">
                   <p className="text-white">Event Name</p>

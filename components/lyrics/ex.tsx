@@ -26,7 +26,7 @@ const LyricsDisplay: FC<LyricsProps> = ({ lyrics }) => {
     return (
         <div>
             {lyrics.map((line, index) => (
-                <span style={{ color: index === currentWordIndex ? 'red' : 'black' }}>
+                <span key={line.time} style={{ color: index === currentWordIndex ? 'red' : 'black' }}>
                     {line.words}{' '}
                 </span>
             ))}
