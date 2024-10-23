@@ -35,7 +35,7 @@ const RightSideBar = () => {
             <ul className="custom-scrollbar w-full flex flex-col space-y-3 overflow-x-hidden overflow-y-scroll">
                 {
                     playlist.map(track => (
-                        <li className="flex justify-around items-center">
+                        <li key={track.title} className="flex justify-around items-center">
                             <div className="w-[30%]">
                                 <img src={track.avatar} className="w-15 h-15 rounded-lg object-cover" alt="" />
                             </div>
