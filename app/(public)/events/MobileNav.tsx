@@ -38,11 +38,11 @@ const MobileNav = () => {
                   </div>
                   <p className="text-blac dark:text-white text-xs">Profile</p>
                 </div>
-                <Link href="/charts" className="flex flex-col space-y-2 items-center">
+                <Link href="/store" className="flex flex-col space-y-2 items-center">
                   <div className=" w-12 h-12 flex items-center justify-center py-2 px-4 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
                     <IoMdHeadset size={20} color="white" />
                   </div>
-                  <p className="text-black dark:text-white text-xs">Charts</p>
+                  <p className="text-black dark:text-white text-xs">Playlist</p>
                 </Link>
 
                 <Link href="/store" className="flex flex-col space-y-2 items-center text-white">
@@ -66,6 +66,13 @@ const MobileNav = () => {
               </li>
 
               <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
+                <Link href="/charts" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
+                  <FaHeadphones size={20} color="white" />
+                  <p>Charts</p>
+                </Link>
+              </li>
+
+              <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
                 <Link href="/artists" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
                   <FaUsers size={20} color="white" />
                   <p>Artists</p>
@@ -80,7 +87,7 @@ const MobileNav = () => {
               </li>
 
               <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
-                <Link href="/podcasts" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
+                <Link href="/events" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
                   <FaMicrophone size={20} color="white" />
                   <p>Podcasts</p>
                 </Link>

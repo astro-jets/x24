@@ -1,6 +1,7 @@
 "use client"
 
 import Loader from "@/components/loader/Loader";
+import Search from "@/components/search/Form";
 import RightSideBar from "@/components/sidbebar/Sidebar";
 import ArtistsSlider from "@/components/slider/artists/Artists";
 import EventsSlider from "@/components/slider/events/Events";
@@ -55,10 +56,13 @@ const LandingPage = () => {
 
                         {/* main content */}
                         <div className="flex justify-around h-full w-full overflow-hidden py-20 md:py-10">
+                            <Search />
 
                             <div className="flex flex-col items-center space-y-4 md:space-y-10 w-full h-full  md:w-3/4 ">
-                                <div className="w-full space-y-6 px-4 max-h-[50vh] rounded-2xl flex items-center justify-center overflow-hidden">
-                                    <Slider />
+                                <div className="p-1">
+                                    <div className="w-full max-h-[50vh] rounded-2xl flex items-center justify-center overflow-hidden">
+                                        <Slider />
+                                    </div>
                                 </div>
                                 <div className="w-full md:h-[42vh] flex py-2 flex-col items-start overflow-hidden">
                                     <h1 className="text-red-400 px-4">Popular Artists</h1>

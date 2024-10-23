@@ -1,6 +1,7 @@
 import Loader from "@/components/loader/Loader";
 import Link from "next/link";
 import { BsCalendar } from "react-icons/bs";
+import { FaTheaterMasks } from "react-icons/fa";
 
 const Events = () => {
     return (
@@ -9,7 +10,10 @@ const Events = () => {
             <div className="w-full h-full bg-no-repeat bg-cover bg-[url('/images/x.jpg')] md:mt-0 p-0">
                 <div className="w-full h-full backdrop-blur-lg bg-white/40 dark:bg-[#0f0f0f94] ">
                     <div className="h-full w-full mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                        <h2 className="text-2xl font-bold tracking-tight text-white">Upcoming Events</h2>
+                        <div className="flex w-full items-center space-x-2">
+                            <FaTheaterMasks size={30} color="white" />
+                            <h2 className="text-2xl font-bold tracking-tight text-white">Events</h2>
+                        </div>
 
                         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 

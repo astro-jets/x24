@@ -177,8 +177,8 @@ const Player = () => {
 
     return (
 
-        <div className={`flex flex-col w-full  md:w-[95%] bg-white/40 h-full rounded-tl-3xl rounded-tr-3xl pb-  backdrop-blur-lg ${isOpen ? 'h-[120vh] py-4' : 'h-20'}`}>
-            <div className={` flex-col w-full h-[80%] pb-6 space-y-6 ${isOpen ? 'flex' : 'hidden'}`}>
+        <div className={`flex flex-col w-full md:max-h-10 md:p-0 md:rounded-none  md:bg-[#ff3030] bg-white/40 h-full rounded-tl-3xl rounded-tr-3xl pb-  backdrop-blur-lg ${isOpen ? 'h-[120vh] py-4' : 'h-20'}`}>
+            <div className={` md:hidden flex-col w-full h-[80%] pb-6 space-y-6 ${isOpen ? 'flex' : 'hidden'}`}>
                 <div className="flex space-x-6 h-20 items-center">
                     <img src="/images/sting.jpg" className='w-20 h-20 rounded-full object-cover' alt="" />
                     <div className="flex flex-col ">
@@ -211,7 +211,7 @@ const Player = () => {
 
             </div>
             <div className="w-full h-30 flex flex-col px-6 space-y-1  py-2 md:space-x-4 items-center md:flex-row md:h-20">
-                <div className="flex items-center  space-x-4 w-full md:w-[45%]">
+                <div className="flex items-center  space-x-4 w-full md:hidden">
                     <img src={audio?.avatar} className="rounded-full object-cover h-15 w-15 cursor-pointer" onClick={() => { setIsOpen(!isOpen) }} alt="" />
                     <div className="flex flex-col justify-start text-white items-start">
                         <p className="text-lg">{audio?.artist}</p>
@@ -234,10 +234,10 @@ const Player = () => {
                     </div>
                 </div>
 
-                <div className="overflow-hidden w-full md:w-[45%] " ref={waveformRef} id='waveform'>
+                <div className="overflow-hidden w-full  " ref={waveformRef} id='waveform'>
                 </div>
 
-                <div className="hidden md:flex w-[5%] text-white text-xs">
+                <div className="hidden w-[5%] text-white text-xs">
                     {waveSurfer?.getDuration()}
                 </div>
             </div>

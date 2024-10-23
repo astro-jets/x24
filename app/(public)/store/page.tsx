@@ -1,4 +1,6 @@
 import Loader from "@/components/loader/Loader";
+import { BsMenuDown, BsShop } from "react-icons/bs";
+import { FaAngleDown } from "react-icons/fa";
 
 const Store = () => {
     return (
@@ -8,6 +10,14 @@ const Store = () => {
                 <div className="w-full h-full backdrop-blur-lg bg-white/40 dark:bg-[#0f0f0f94] ">
                     <div className="h-full w-full mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                         <h2 className="text-2xl font-bold tracking-tight text-white">Welcome to the shop</h2>
+
+                        <div className="mt-4 w-30 justify-center items-center ml-auto flex space-x-2 relative backdrop-blur-lg dark:bg-[#0f0f0f5b] rounded-2xl p-1">
+                            <div className="p-2 rounded-2xl backdrop-blur-lg dark:bg-[#0f0f0f5b]">
+                                <BsShop size={15} color="red" />
+                            </div>
+                            <p className="text-white font-light text-xl">Shops</p>
+                            <FaAngleDown color="white" size={15} />
+                        </div>
 
                         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] rounded-2xl p-2">
