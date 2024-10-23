@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-
+import { Analytics } from "@vercel/analytics/react"
 import AuthProvider from '../context/AuthProvider'
 import Navbar from '@/components/header/Header'
 import { AudioContextProvider } from '@/context/AudioContext'
@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="custom-scrollbar">
+
         <AuthProvider>
           <AudioContextProvider>
             {/* <Navbar /> */}
@@ -31,7 +32,9 @@ export default function RootLayout({
             </main>
           </AudioContextProvider>
         </AuthProvider>
+
       </body>
+      <Analytics />
     </html>
   )
 }

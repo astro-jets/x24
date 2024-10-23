@@ -35,7 +35,7 @@ const Podcasts = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/mom.png    " alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/mom.png" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
