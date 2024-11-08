@@ -1,7 +1,7 @@
 "use client"
 
 import Loader from "@/components/loader/Loader";
-import Player from "@/components/player/player";
+import Player from "@/components/player2";
 import RightSideBar from "@/components/sidbebar/Sidebar";
 import { AudioContext } from "@/context/AudioContext";
 import { useContext, useState } from "react";

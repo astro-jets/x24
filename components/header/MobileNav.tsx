@@ -7,7 +7,7 @@ import { LiaUserAstronautSolid } from "react-icons/lia"
 import { IoMdHeadset } from "react-icons/io"
 import { BsCart, BsGear, BsSoundwave, BsPeople } from "react-icons/bs";
 import { AudioContext } from "@/context/AudioContext";
-import Player from "../player/player";
+import Player from "../player2";
 const MobileNav = () => {
   const [showPlayer, setShowPlayer] = useState(false)
   const { audio, setAudio } = useContext(AudioContext)
