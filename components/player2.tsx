@@ -1,15 +1,18 @@
+"use client"
 import { useEffect, useRef, useState } from 'react';
 import { IoIosPause, IoIosPlayCircle, IoIosSkipBackward, IoIosSkipForward } from "react-icons/io";
 import { FaDownload, FaHeart, FaShare, FaVideo } from 'react-icons/fa';
+import Slider from "react-slider"
 import { useAudio } from '@/context/AudioContext';
 
 const Player = () => {
-    const [playing, setPlaying] = useState(false);
-    const audioElement = useRef(null);
+    const [playing, setPlaying] = useState(true);
+    const audioElement = useRef<HTMLAudioElement>(null);
     const { audio, nextTrack, prevTrack } = useAudio();
     const [isOpen, setIsOpen] = useState(true)
     const [audioProgress, setAudioProgress] = useState(0);
     const [audioPlayer, setAP] = useState<HTMLAudioElement>();
+    const [seeking, setSeeking] = useState(false);  // Track if the user is seeking
     const lyrics = [
         { time: 1, words: 'Ase LeuMas,' },
         { time: 7, words: 'Zawu zoba zoba Zawu (ey)' },
@@ -57,39 +60,61 @@ const Player = () => {
         return scores.indexOf(closest);
     }
 
-
     useEffect(() => {
-        const ap = document.getElementById('mainAudio') as HTMLAudioElement;
-        if (!audioPlayer) {
-            setAP(ap);
+        const audioTag = document.getElementById('mainAudio') as HTMLAudioElement;
+        if (audioTag) {
+            audioTag.load();
+            audioTag.src = audio.audio; // Assuming audio.audio is the current track's URL
         }
-    });
+        setAP(audioTag);
+        audioPlayer?.play(); // Automatically play on load, you can modify this as needed
+    }, [audio]); // Make sure the audio element loads when the track changes
 
     useEffect(() => {
-        if (audio && audioPlayer) {
-            // Auto-play the track when audio is loaded
-            audioPlayer.play().then(() => {
-                setPlaying(true); // Set the state to reflect that the audio is playing
-            }).catch(error => {
-                console.error('Audio playback failed:', error);
-            });
-
+        if (audioPlayer) {
             // Define the event handler for the 'timeupdate' event
             const handleTimeUpdate = () => {
-                const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-                setAudioProgress(progress);
+                if (!seeking) {  // Only update progress if we are not seeking
+                    const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                    setAudioProgress(progress);
+                }
             };
 
             audioPlayer.addEventListener('ended', nextTrack);
+
+            // Add the 'ended' and 'timeupdate' event listeners
             audioPlayer.addEventListener('timeupdate', handleTimeUpdate);
 
+            // Watch for changes in isPlaying and play/pause the audio accordingly
+            if (playing) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+
+            // Cleanup function to remove the 'ended' and 'timeupdate' event listeners
             return () => {
-                // Cleanup event listeners when the component unmounts or `audio` changes
-                audioPlayer.removeEventListener('ended', nextTrack);
+                // audio.removeEventListener('ended', handleAudioEnded);
                 audioPlayer.removeEventListener('timeupdate', handleTimeUpdate);
             };
         }
-    }, [audio, audioPlayer]); // Depend on `audio` and `audioPlayer` so it runs when they change
+    }, [playing, audio, seeking]);
+
+    // Handle when the user manually changes the slider (seek position)
+    const handleSeek = (value: number) => {
+        if (audioPlayer?.currentTime) {
+            setSeeking(true)
+            const newTime = (value * audioPlayer.duration / 100);
+            audioPlayer.currentTime = newTime;
+            setAudioProgress(value);
+        }
+    };
+
+    // Ensure seeking ends when the user is done with the slider
+    const handleSliderMouseUp = () => {
+        setSeeking(false);  // Mark seeking as false when the user stops interacting
+    };
+
 
 
     const togglePlayPause = () => {
@@ -99,10 +124,7 @@ const Player = () => {
         }
         else { audioPlayer?.play(); setPlaying(true); }
     };
-
-
-
-
+    // 
 
     return (
 
@@ -140,12 +162,24 @@ const Player = () => {
 
             </div>
             <div className="w-full h-30 flex flex-col px-6 space-y-1  py-2 md:space-x-4 items-center md:flex-row md:h-20">
+                {/* Audio Seek */}
+                <div className="w-full h-full bmb-4 flex flex-col items-center justify-center">
+                    <Slider
+                        min={0}
+                        max={100}
+                        value={audioProgress}
+                        onChange={handleSeek}
+                        onAfterChange={handleSliderMouseUp} // Triggered after seeking is done
+                        className="custom-slider" // You can add your custom class for styling
+                    />
+                </div>
                 <div className="flex items-center  space-x-4 w-full md:hidden">
                     <img src={audio?.avatar} className="rounded-full object-cover h-15 w-15 cursor-pointer" onClick={() => { setIsOpen(!isOpen) }} alt="" />
                     <div className="flex flex-col justify-start text-white items-start">
                         <p className="text-lg">{audio?.artist}</p>
                         <p className="text-sm text-gray-200">{audio?.title}</p>
                     </div>
+
 
                     <div className="controls flex items-center space-x-6">
                         <IoIosSkipBackward color="white" className='cursor-pointer' size={20} onClick={() => { prevTrack() }} />
@@ -163,7 +197,7 @@ const Player = () => {
                     </div>
                 </div>
 
-                <audio id="mainAudio" ref={audioElement} src={audio.audio} preload='lazy' ></audio>
+                <audio id="mainAudio" ref={audioElement} preload='lazy' />
             </div>
         </div >
     );

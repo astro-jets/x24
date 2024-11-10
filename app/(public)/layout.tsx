@@ -21,20 +21,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="custom-scrollbar">
+      <AudioContextProvider>
+        <body className="custom-scrollbar">
 
-        <AuthProvider>
-          <AudioContextProvider>
+          <AuthProvider>
             {/* <Navbar /> */}
             <main className="h-full">
               {children}
               <MobileNav />
             </main>
-          </AudioContextProvider>
-        </AuthProvider>
+          </AuthProvider>
 
-      </body>
-      <Analytics />
+        </body>
+        <Analytics />
+      </AudioContextProvider>
     </html>
   )
 }

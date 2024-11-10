@@ -5,7 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { FaComment, FaHeadphones, FaMicrophone, FaTheaterMasks, FaTicketAlt, FaUsers } from "react-icons/fa"
 import { LiaUserAstronautSolid } from "react-icons/lia"
 import { IoMdHeadset } from "react-icons/io"
-import { BsCart, BsGear, BsSoundwave, BsPeople } from "react-icons/bs";
+import { BsCart, BsGear, BsSoundwave, BsPeople, BsDoorOpen } from "react-icons/bs";
 import { AudioContext } from "@/context/AudioContext";
 import Player from "../player2";
 const MobileNav = () => {
@@ -89,11 +89,11 @@ const MobileNav = () => {
 
 
               {/* <div className="navbar-item hide-lg">
-            <button className="rounded-lg text-white bg-red-500 w-1/2 flex items-center justify-center space-x-3 py-3">
-              <BsDoorOpen size={20} color="white" />
-              <p>Log In or Register</p>
-            </button>
-          </div> */}
+                <button className="rounded-lg text-white bg-red-500 w-1/2 flex items-center justify-center space-x-3 py-3">
+                  <BsDoorOpen size={20} color="white" />
+                  <p>Log In or Register</p>
+                </button>
+              </div> */}
             </ul>
           </div>
         }

@@ -9,7 +9,6 @@ const Player = () => {
     const waveformRef = useRef<HTMLDivElement | null>(null);
     const [waveSurfer, setWaveSurfer] = useState<WaveSurfer | null>(null);
     const { audio, nextTrack, prevTrack } = useAudio();
-    const [indexTr, setIndexTr] = useState(0)
     const [isOpen, setIsOpen] = useState(true)
     const lyrics = [
         { time: 1, words: 'Ase LeuMas,' },
@@ -43,45 +42,6 @@ const Player = () => {
     ];
 
 
-
-    // function parseLyric(lrc: string): { time: number; text: string }[] {
-    //     // will match "[00:00.00] ooooh yeah!"
-    //     // note: i use named capturing group
-    //     const regex = /^\[(?<time>\d{2}:\d{2}(.\d{2})?)\](?<text>.*)/;
-
-    //     // split lrc string to individual lines
-    //     const lines = lrc.split("\n");
-
-    //     const output: { time: number; text: string }[] = [];
-
-    //     lines.forEach(line => {
-    //         const match = line.match(regex);
-
-    //         // if doesn't match, return.
-    //         if (match == null) return;
-
-    //         const { time, text } = match.groups as { time: string; text: string };
-
-    //         output.push({
-    //             time: parseTime(time),
-    //             text: text.trim()
-    //         });
-    //     });
-
-    //     // parse formated time
-    //     // "03:24.73" => 204.73 (total time in seconds)
-    //     function parseTime(time: string): number {
-    //         const minsec = time.split(":");
-
-    //         const min = parseInt(minsec[0]) * 60;
-    //         const sec = parseFloat(minsec[1]);
-
-    //         return min + sec;
-    //     }
-
-    //     return output;
-    // }
-
     function syncLyric(lyrics: { time: number }[], time: number): number | null {
         const scores: number[] = [];
         lyrics.forEach(lyric => {
@@ -111,30 +71,36 @@ const Player = () => {
     }
 
     useEffect(() => {
-        const ws = WaveSurfer.create({
-            container: waveformRef.current ? waveformRef.current : '',
-            waveColor: '#ccc',
-            progressColor: 'red',
-            backend: 'MediaElement',
-            height: 25,
-            normalize: true,
-            barGap: 1,
-            barRadius: 20,
-            barHeight: 20,
-            barWidth: 2
-        });
-        ws.load(audio?.audio as string);
-        setWaveSurfer(ws)
-        return () => {
-            ws?.destroy();
-        };
+        if (waveSurfer == null) {
+            const ws = WaveSurfer.create({
+                container: waveformRef.current ? waveformRef.current : '',
+                waveColor: '#ccc',
+                progressColor: 'red',
+                backend: 'MediaElement',
+                height: 25,
+                normalize: true,
+                barGap: 1,
+                barRadius: 20,
+                barHeight: 20,
+                barWidth: 2,
+                autoplay: false
+            });
+            setWaveSurfer(ws)
+            return () => {
+                ws.stop()
+                ws.unAll();
+                ws?.destroy();
+                setWaveSurfer(null)
+            };
+        }
     }, []);
 
     useEffect(() => {
         waveSurfer?.load(audio?.audio as string)
         waveSurfer?.on('ready', function () {
-            waveSurfer?.play();
+            waveSurfer.stop()
             setPlaying(true);
+
         });
 
         waveSurfer?.on('error', function (err) {
@@ -145,6 +111,14 @@ const Player = () => {
         waveSurfer?.on('finish', function () {
             nextTrack();
         });
+        return () => {
+            waveSurfer?.unAll()
+            waveSurfer?.destroy()
+        }
+    }, [audio]);
+
+    useEffect(() => {
+
         const dom = {
             lyric: document.querySelector(".lyric") as HTMLElement,
         };
@@ -160,7 +134,6 @@ const Player = () => {
             }
         });
         console.log("Lyrics => ", lyrics)
-
 
     }, [audio, lyrics]);
 
