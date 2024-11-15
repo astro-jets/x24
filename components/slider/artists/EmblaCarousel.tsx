@@ -82,8 +82,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       audio: "/a4.mp3"
     },
   ]
-  const { setAudio } = useContext(AudioContext)
-  const { setPlaylist } = useContext(AudioContext)
+  const { setAudio, setPlaylist, setPlaying } = useContext(AudioContext)
 
   return (
     <section className="embla w-full">
@@ -96,6 +95,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 onClick={() => {
                   setAudio(track);
                   setPlaylist(tracks);
+                  setPlaying(true)
                 }} src={track.avatar} alt="" />
             ))
           }

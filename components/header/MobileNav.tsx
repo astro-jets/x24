@@ -26,7 +26,7 @@ const MobileNav = () => {
   return (
     <>
 
-      <nav className="relative flex flex-col w-screen max-h-screen overflow-hidden">
+      <nav className="relative flex flex-col w-screen max-h-screen overflow-hidden z-999">
         {/* Menu */}
         {isMenuOpen &&
           <div className={`mobile-menu fixed z-999 left-0  bottom-0 backdrop-blur-lg bg-[#ffffff9d] dark:bg-[#000000d0] w-screen h-screen overflow-hidden scroll-m-0   ${isMenuOpen ? 'show' : 'close'}`} id="navmenu">
@@ -113,7 +113,7 @@ const MobileNav = () => {
 
             <div className="flex flex-col space-y-1  items-center" onClick={() => { setIsMenuOpen(false) }}>
               <BsPeople color="#fff" size={20} className="mobile-menu-icon" />
-              <Link href={'/posts'} className="text-white text-xs">Timeline</Link>
+              <Link href={'/posts/'} className="text-white text-xs">Timeline</Link>
             </div>
 
 

@@ -16,7 +16,7 @@ const GlasmorphicBlogPost: React.FC<BlogPostProps> = ({ title, excerpt, imageUrl
             {/* Avatar Section */}
             <div className="flex items-center py-1 space-x-2">
                 <div className="border border-red-500 rounded-full w-10 h-10 overflow-hidden flex items-center justify-center">
-                    <img src="/images/user/user-01.png" className="w-full h-full object-cover" alt="" />
+                    <img src="/images/bb.jpg" className="w-full h-full object-cover" alt="" />
                 </div>
                 <h1 className="text-white text-xl font-thin"> Astro Jets</h1>
             </div>

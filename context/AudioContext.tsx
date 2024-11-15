@@ -20,6 +20,8 @@ export interface AudioContextType {
     >;
     playlist: Array<{ artist: string; audio: string; avatar: string; title: string }>;
     setPlaylist: Dispatch<SetStateAction<Array<{ artist: string; audio: string; avatar: string; title: string }>>>;
+    playing: boolean;
+    setPlaying: Dispatch<SetStateAction<boolean>>;
     nextTrack: () => void;
     prevTrack: () => void;
 }
@@ -28,6 +30,7 @@ interface ProviderProps {
     children: ReactNode;
     initial?: { artist: string, audio: string, avatar: string, title: string };
     initialPlaylist?: Array<{ artist: string; audio: string; avatar: string; title: string }>;
+    isPlaying?: boolean
 }
 
 export const AudioContext = createContext<AudioContextType>({
@@ -35,11 +38,18 @@ export const AudioContext = createContext<AudioContextType>({
     setAudio: () => { },
     playlist: [],
     setPlaylist: () => { },
+    playing: false,
+    setPlaying: () => { },
     nextTrack: () => { },
     prevTrack: () => { }
 });
 
-export const AudioContextProvider: FC<ProviderProps> = ({ children, initial = { artist: '', audio: '', avatar: '', title: '' }, initialPlaylist = [] }) => {
+export const AudioContextProvider: FC<ProviderProps> = ({
+    children,
+    isPlaying = false,
+    initial = { artist: '', audio: '', avatar: '', title: '' },
+    initialPlaylist = [] }) => {
+    const [playing, setPlaying] = useState(isPlaying);
     const [audio, setAudio] = useState(initial);
     const [playlist, setPlaylist] = useState(initialPlaylist);
 
@@ -56,7 +66,7 @@ export const AudioContextProvider: FC<ProviderProps> = ({ children, initial = { 
     };
 
     return (
-        <AudioContext.Provider value={{ audio, setAudio, playlist, setPlaylist, nextTrack, prevTrack }}>
+        <AudioContext.Provider value={{ playing, setPlaying, audio, setAudio, playlist, setPlaylist, nextTrack, prevTrack }}>
             {children}
         </AudioContext.Provider>
     );

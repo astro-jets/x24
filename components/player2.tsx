@@ -6,68 +6,21 @@ import Slider from "react-slider"
 import { useAudio } from '@/context/AudioContext';
 
 const Player = () => {
-    const [playing, setPlaying] = useState(true);
     const audioElement = useRef<HTMLAudioElement>(null);
-    const { audio, nextTrack, prevTrack } = useAudio();
+    const { audio, nextTrack, prevTrack, playing, setPlaying } = useAudio();
     const [isOpen, setIsOpen] = useState(true)
     const [audioProgress, setAudioProgress] = useState(0);
     const [audioPlayer, setAP] = useState<HTMLAudioElement>();
-    const [seeking, setSeeking] = useState(false);  // Track if the user is seeking
-    const lyrics = [
-        { time: 1, words: 'Ase LeuMas,' },
-        { time: 7, words: 'Zawu zoba zoba Zawu (ey)' },
-        { time: 9.6, words: 'Zaukape ine sindipanga' },
-        { time: 12, words: 'Zaukape ine sindipanga' },
-        { time: 14, words: 'Zauzoba sindipanga' },
-        { time: 16, words: 'Zaukape ine sindipanga' },
-        { time: 22, words: 'Zondipinga ine mmm mmm' },
-        { time: 26, words: 'Zondiyenda mbali ine (eish)' },
-        { time: 27.7, words: 'Ndikati mmm mmm, mmm-mmm (kuno ayi)' },
-        { time: 31, words: 'mmm mmm, mmm-mmm (ine)' },
-        { time: 34.3, words: 'mmm mmm, mmm-mmm (kuno ayi)' },
-        { time: 40, words: 'Ngati isali trans ID ine mmm mmm' },
-        { time: 45, words: 'Can you do me a favour ine mmm mmm' },
-        { time: 50, words: 'Iwe cross yowuluka ine mmm mmm' },
-        { time: 54, words: 'Zongobwela muli boys yokha yokha kuno mmm mmm' },
-        { time: 57, words: 'Inu shasha naye ndi munthu' },
-        { time: 59.5, words: 'Kaya local chicken bolani nkhuku' },
-        { time: 62.2, words: 'Kumamwela ndi ma mmm mmm' },
-        { time: 64.6, words: 'Macheza amakoma tili two two' },
-        { time: 66.5, words: 'Zamijedu kuno mmm mmm (kuno ayi)' },
-        { time: 70, words: 'zamabodza kuno mmm mmm' },
-        { time: 72, words: 'zamaluzi pano mmm mmm' },
-        { time: 75, words: 'Tiku chaser bag sizibukhu' },
-        { time: 76.75, words: 'ay yay yay yay yay yay' },
-        { time: 80, words: 'Zondipinga ine mmm mmm' },
-        { time: 84, words: 'Zondiyenda mbali ine mmm mmm (eish)' },
-        { time: 88.5, words: 'Boss zotipinga ife mmm mmm' },
-        { time: 92, words: 'Inu, zotiyenda mbali ife' },
-    ];
-
-    function syncLyric(lyrics: { time: number }[], time: number): number | null {
-        const scores: number[] = [];
-        lyrics.forEach(lyric => {
-            // get the gap or distance or we call it score
-            const score = time - lyric.time;
-
-            // only accept score with positive values
-            if (score >= 0) scores.push(score);
-        });
-        if (scores.length == 0) return null;
-        // get the smallest value from scores
-        const closest = Math.min(...scores);
-        // return the index of closest lyric
-        return scores.indexOf(closest);
-    }
+    const [seeking, setSeeking] = useState(false);
 
     useEffect(() => {
         const audioTag = document.getElementById('mainAudio') as HTMLAudioElement;
         if (audioTag) {
-            audioTag.load();
             audioTag.src = audio.audio; // Assuming audio.audio is the current track's URL
+            setAP(audioTag);
+            if (playing) { audioPlayer?.play(); }
         }
-        setAP(audioTag);
-        audioPlayer?.play(); // Automatically play on load, you can modify this as needed
+
     }, [audio]); // Make sure the audio element loads when the track changes
 
     useEffect(() => {
@@ -85,20 +38,13 @@ const Player = () => {
             // Add the 'ended' and 'timeupdate' event listeners
             audioPlayer.addEventListener('timeupdate', handleTimeUpdate);
 
-            // Watch for changes in isPlaying and play/pause the audio accordingly
-            if (playing) {
-                audioPlayer.play();
-            } else {
-                audioPlayer.pause();
-            }
-
             // Cleanup function to remove the 'ended' and 'timeupdate' event listeners
             return () => {
                 // audio.removeEventListener('ended', handleAudioEnded);
                 audioPlayer.removeEventListener('timeupdate', handleTimeUpdate);
             };
         }
-    }, [playing, audio, seeking]);
+    }, [audio, seeking]);
 
     // Handle when the user manually changes the slider (seek position)
     const handleSeek = (value: number) => {
@@ -119,8 +65,8 @@ const Player = () => {
 
     const togglePlayPause = () => {
         if (playing) {
-            audioPlayer?.pause()
             setPlaying(false)
+            audioPlayer?.pause()
         }
         else { audioPlayer?.play(); setPlaying(true); }
     };

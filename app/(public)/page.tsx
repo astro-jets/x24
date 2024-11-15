@@ -77,10 +77,6 @@ const LandingPage = () => {
                             </div>
                             <RightSideBar />
                         </div>
-
-                        {/* <div className={`bottom-[5vh] md:bottom-[5vh] w-full md:w-[65%] flex items-start justify-start md:items-center md:justify-center ${audio.audio === '' ? 'hidden' : 'fixed'}`}>
-                            <Player />
-                        </div> */}
                     </div>
                 </div>
             </div>
