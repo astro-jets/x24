@@ -34,7 +34,7 @@ export default function YouTubeChannel() {
             <Loader />
             <div className="bg-[#111] text-white min-h-screen">
                 {/* Header */}
-                <header className="sticky top-0 bg-[#222] flex items-center px-4 py-3 min-20 shadow-md">
+                <div className="sticky top-0 bg-[#222] flex items-center px-4 py-3 min-20 shadow-md">
                     <h1 className="text-lg font-semibold">PODCAST MALAWI</h1>
                     <div className="ml-auto flex items-center space-x-4">
                         <button className="text-gray-400 hover:text-white">
@@ -44,7 +44,7 @@ export default function YouTubeChannel() {
                             <BsBell color="white" size={20} />
                         </button>
                     </div>
-                </header>
+                </div>
                 {/* Top Cover Section */}
                 <div className="relative h-80">
                     <Image
