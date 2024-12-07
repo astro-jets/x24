@@ -1,11 +1,9 @@
 "use client"
 
 import Loader from "@/components/loader/Loader";
-import Player from "@/components/player2";
 import RightSideBar from "@/components/sidbebar/Sidebar";
-import { AudioContext } from "@/context/AudioContext";
-import { useContext, useState } from "react";
-import { BsBell, BsCart, BsGear, BsHouse, BsList, BsSearch, BsSoundwave } from "react-icons/bs";
+import { useState } from "react";
+import { BsBell, BsGear, BsSearch, } from "react-icons/bs";
 import GlasmorphicBlogPost from "./templates/BlogPostComponent";
 
 const PostsPage = () => {
@@ -84,7 +82,7 @@ const PostsPage = () => {
 
 
                             </div>
-                            <RightSideBar />
+                            {/* <RightSideBar /> */}
                         </div>
                     </div>
                 </div>

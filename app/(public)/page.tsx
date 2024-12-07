@@ -5,9 +5,9 @@ import Search from "@/components/search/Form";
 import RightSideBar from "@/components/sidbebar/Sidebar";
 import ArtistsSlider from "@/components/slider/artists/Artists";
 import EventsSlider from "@/components/slider/events/Events";
+import PodcastSlider from "@/components/slider/podcasts/Podcasts";
 import Slider from "@/components/slider/top/Slider";
-import { AudioContext } from "@/context/AudioContext";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { BsBell, BsGear, BsSearch } from "react-icons/bs";
 
 const LandingPage = () => {
@@ -58,7 +58,7 @@ const LandingPage = () => {
                         <div className="flex justify-around h-full w-full overflow-hidden py-20 md:py-10">
                             <Search />
 
-                            <div className="flex flex-col items-center space-y-4 md:space-y-10 w-full h-full  md:w-3/4 ">
+                            <div className="flex flex-col items-center space-y-7 md:space-y-10 w-full h-full  md:w-3/4 ">
                                 <div className="p-1">
                                     <div className="w-full max-h-[50vh] rounded-2xl flex items-center justify-center overflow-hidden">
                                         <Slider />
@@ -69,13 +69,18 @@ const LandingPage = () => {
                                     <ArtistsSlider />
                                 </div>
                                 <div className="flex flex-col h-full w-full items-start">
-                                    <h1 className="text-red-400 px-4">Events</h1>
                                     <EventsSlider />
+                                </div>
+                                <div className="flex flex-col h-full w-full items-start">
+                                    <PodcastSlider />
                                 </div>
 
 
                             </div>
-                            <RightSideBar />
+
+                            <div className="hidden lg:block">
+                                {/* <RightSideBar /> */}
+                            </div>
                         </div>
                     </div>
                 </div>

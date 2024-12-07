@@ -1,3 +1,5 @@
+"use client"
+
 import Loader from "@/components/loader/Loader";
 import { BsMenuDown, BsShop } from "react-icons/bs";
 import { FaAngleDown } from "react-icons/fa";
