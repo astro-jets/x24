@@ -11,7 +11,7 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 function EventsSlider() {
     return (
-        <div className="flex flex-col w-full h-full mt-12">
+        <div className="flex flex-col w-full h-full mt-12 ">
             <div className="flex w-full items-center space-x-2">
                 <FaTheaterMasks size={30} color="white" />
                 <h2 className="text-2xl font-bold tracking-tight text-white">Events</h2>

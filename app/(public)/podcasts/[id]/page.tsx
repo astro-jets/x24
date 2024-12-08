@@ -1,6 +1,10 @@
+"use client"
 import Image from "next/image";
 import { BsBell, BsFire } from "react-icons/bs";
+import { MdOutlineMovie } from "react-icons/md";
 import Loader from "@/components/loader/Loader";
+import Reels from "@/components/slider/reels/Reels";
+import { BiCameraMovie } from "react-icons/bi";
 
 export default function YouTubeChannel() {
     const videos = [
@@ -34,11 +38,11 @@ export default function YouTubeChannel() {
             <Loader />
             <div className="bg-[#111] text-white min-h-screen">
                 {/* Header  */}
-                <div className="sticky top-0 bg-[#222] flex items-center px-4 py-3 min-20 shadow-md">
+                <div className="sticky top-0 bg-[#222] flex items-center px-4 py-3 min-20 shadow-md z-99">
                     <h1 className="text-lg font-semibold">PODCAST MALAWI</h1>
                     <div className="ml-auto flex items-center space-x-4">
                         <button className="text-gray-400 hover:text-white">
-                            <BsFire color="white" size={20} />
+                            <BsFire color="red" size={20} />
                         </button>
                         <button className="text-gray-400 hover:text-white">
                             <BsBell color="white" size={20} />
@@ -69,9 +73,9 @@ export default function YouTubeChannel() {
                     </div>
                 </div>
                 {/* Content */}
-                <main className="px-4 py-6 space-y-6">
+                <main className="py-6 pb-20 space-y-6">
 
-                    <div className="flex gap-2 mt-2">
+                    <div className=" px-4 flex gap-2 mt-2">
                         {tags.map((tag, index) => (
                             <span
                                 key={index}
@@ -81,55 +85,31 @@ export default function YouTubeChannel() {
                             </span>
                         ))}
                     </div>
+
                     {/* Reels Grid */}
                     <div className="space-y-4">
-                        <h2 className="text-xl font-semibold">Reels</h2>
-                        <div className="grid grid-cols-2 gap-4">
-                            {/* Video Card */}
-                            <div className="bg-[#333] rounded-lg overflow-hidden">
-                                <div className="relative h-40">
-                                    {/* Thumbnail Image */}
-                                    <Image
-                                        src="/images/abale.jpg" // Replace with your thumbnail image
-                                        alt="Video Thumbnail"
-                                        layout="fill"
-                                        className="object-cover"
-                                    />
-                                </div>
-                                <div className="p-2">
-                                    <h3 className="text-sm font-medium">
-                                        Episode 139 | Krazie G Reflects on Music...
-                                    </h3>
-                                    <p className="text-xs text-gray-400">16k views • 4 days ago</p>
-                                </div>
-                            </div>
-
-                            {/* Add more video cards */}
-                            <div className="bg-[#333] rounded-lg overflow-hidden">
-                                <div className="relative h-40">
-                                    <Image
-                                        src="/images/x4.jpg" // Replace with your thumbnail image
-                                        alt="Video Thumbnail"
-                                        layout="fill"
-                                        className="object-cover"
-                                    />
-                                </div>
-                                <div className="p-2">
-                                    <h3 className="text-sm font-medium">
-                                        Episode 135 | MultiChoice Panel...
-                                    </h3>
-                                    <p className="text-xs text-gray-400">7.1k views • 1 week ago</p>
-                                </div>
-                            </div>
+                        <div className="flex space-x-1 px-4">
+                            <BiCameraMovie
+                                className="animate-tilt transition-transform"
+                                size={24} color="white" />
+                            <h2 className="text-xl font-semibold">
+                                Reels
+                            </h2>
                         </div>
+                        <Reels />
                     </div>
 
-                    <div className=" text-white p-4">
-                        <h2 className="text-xl font-bold mb-4">Videos</h2>
+                    <div className=" text-white px-4 w-full space-y-4">
+                        <div className="flex items-center space-x-1">
+                            <MdOutlineMovie className="transition-all " size={24} color="white" />
+                            <h2 className="text-xl font-semibold">
+                                Videos
+                            </h2>
+                        </div>
                         <div className="space-y-7">
                             {videos.map((video, index) => (
                                 <div key={index} className="flex gap-4 items-start bg-[#222] rounded-2xl p-1">
-                                    <div className="relative w-40 h-24">
+                                    <div className="relative w-40 h-30">
                                         <Image
                                             src={video.thumbnail}
                                             alt={video.title}

@@ -55,24 +55,26 @@ const LandingPage = () => {
                         </div>
 
                         {/* main content */}
-                        <div className="flex justify-around h-full w-full overflow-hidden py-20 md:py-10">
+                        <div className="flex justify-around h-full w-full overflow-hidden md:py-10">
                             <Search />
 
-                            <div className="flex flex-col items-center space-y-7 md:space-y-10 w-full h-full  md:w-3/4 ">
+                            <div className="flex flex-col items-center space-y-4 md:space-y-10 w-full h-full  md:w-3/4 ">
                                 <div className="p-1">
                                     <div className="w-full max-h-[50vh] rounded-2xl flex items-center justify-center overflow-hidden">
                                         <Slider />
                                     </div>
                                 </div>
-                                <div className="w-full md:h-[42vh] flex py-2 flex-col items-start overflow-hidden">
-                                    <h1 className="text-red-400 px-4">Popular Artists</h1>
-                                    <ArtistsSlider />
-                                </div>
-                                <div className="flex flex-col h-full w-full items-start">
-                                    <EventsSlider />
-                                </div>
-                                <div className="flex flex-col h-full w-full items-start">
-                                    <PodcastSlider />
+                                <div className="flex flex-col min-h-[180vh] sapce-y-12 h-full w-full">
+                                    <div className="w-full md:h-[42vh] flex py-2 flex-col items-start overflow-hidden">
+                                        <h1 className="text-red-400 px-4">Popular Artists</h1>
+                                        <ArtistsSlider />
+                                    </div>
+                                    <div className="flex flex-col h-full w-full items-start">
+                                        <EventsSlider />
+                                    </div>
+                                    <div className="flex flex-col h-full w-full items-start">
+                                        <PodcastSlider />
+                                    </div>
                                 </div>
 
 

@@ -313,3 +313,18 @@ header {
     width: 35%;
     height: 35%;
 }
+
+@keyframes tilt {
+    0% {
+        transform: rotate(45deg);
+    }
+
+
+    100% {
+        transform: rotate(-45deg);
+    }
+}
+
+.animate-tilt {
+    animation: tilt 3s ease-out forwards;
+}
