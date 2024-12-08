@@ -5,6 +5,7 @@ import { MdOutlineMovie } from "react-icons/md";
 import Loader from "@/components/loader/Loader";
 import Reels from "@/components/slider/reels/Reels";
 import { BiCameraMovie } from "react-icons/bi";
+import PodcastTags from "@/components/slider/podcastTags/PodcastTags";
 
 export default function YouTubeChannel() {
     const videos = [
@@ -32,7 +33,7 @@ export default function YouTubeChannel() {
     ];
     const coverImage = '/images/mcast.jpg'; // Replace with actual cover image URL
     const profileImage = '/images/mcast.jpg'; // Replace with actual profile image URL
-    const tags = ['Home', 'Videos', 'Reels', 'Community'];
+
     return (
         <>
             <Loader />
@@ -73,18 +74,8 @@ export default function YouTubeChannel() {
                     </div>
                 </div>
                 {/* Content */}
-                <main className="py-6 pb-20 space-y-6">
-
-                    <div className=" px-4 flex gap-2 mt-2">
-                        {tags.map((tag, index) => (
-                            <span
-                                key={index}
-                                className="bg-gray-800 text-white text-sm px-3 py-1 rounded-2xl border border-gray-600"
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
+                <main className="py-6 pb-20 space-y-8">
+                    <PodcastTags />
 
                     {/* Reels Grid */}
                     <div className="space-y-4">

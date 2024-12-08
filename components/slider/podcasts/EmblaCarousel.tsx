@@ -1,15 +1,9 @@
 "use client"
 
-import React, { useCallback, useContext } from 'react'
-import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
-import {
-  PrevButton,
-  NextButton,
-  usePrevNextButtons
-} from './EmblaCarouselArrowButtons'
-import Autoplay from 'embla-carousel-autoplay'
+import React from 'react'
+import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
-import { FaTicketAlt } from 'react-icons/fa'
+import { FaMicrophoneAlt } from 'react-icons/fa'
 import Link from 'next/link'
 
 type PropType = {
@@ -19,19 +13,9 @@ type PropType = {
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
 
-  const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-    const autoplay = emblaApi?.plugins()?.autoplay
-    if (!autoplay) return
-  }, [])
 
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi, onNavButtonClick)
   const tracks = [
     {
       title: 'Made on monday',
@@ -62,7 +46,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           {
             tracks.map(track => (
 
-              <div key={track.title} className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2 max-h-70 h-70 min-w-45">
+              <div key={track.title} className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2 max-h-60 h-full min-w-45">
                 <div className="aspect-h-1 h-40 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
                   <img src={track.avatar} alt="Front of men&#039;s Event Name in black."
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
@@ -81,6 +65,17 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               </div>
             ))
           }
+          <Link href={'/events'} className="bg-[#333] w-full min-w-40 mx-4 rounded-lg overflow-hidden">
+            <div className="relative flex items-center justify-center h-40">
+              {/* Thumbnail Image */}
+              <FaMicrophoneAlt fontWeight={20} size={60} color="white" />
+            </div>
+            <div className="p-2">
+              <h3 className="text-sm text-center text-white font-medium">
+                View All Podcasts
+              </h3>
+            </div>
+          </Link>
         </div>
       </div>
 
