@@ -11,7 +11,7 @@ const PostsPage = () => {
     return (
         <>
             <Loader />
-            <div className="w-full h-full md:bg-[url('/images/x.jpg')] md:mt-0">
+            <div className="w-full h-full bg-no-repeat bg-cover bg-[url('/images/x.jpg')] md:mt-0 p-0">
                 <div className="md:backdrop-blur-lg md:bg-white/40  h-full w-full  flex flex-row justify-between ">
                     {/* Sidebar */}
                     <div className=" backdrop-blur-lg hidden md:flex flex-col space-y-8 py-4 px-4 w-[15%] h-screen ">
@@ -26,7 +26,7 @@ const PostsPage = () => {
 
                     </div>
                     {/* Main */}
-                    <div className=" bg-white dark:bg-[#000] h-full w-full md:w-[85%]  flex flex-col rounded-tl-[30px] rounded-bl-[30px]">
+                    <div className="relative bg-white/60 dark:bg-[#0f0f0fce] h-full pb-4 w-full md:w-[85%]  flex flex-col rounded-tl-[30px] rounded-bl-[30px]">
                         {/* Topbar */}
                         <div className="h-20 w-full hidden md:flex items-center justify-between space-x-6 px-4">
                             <p className="text-black dark:text-white text-sm w-1/3 pl-3 border-0 border-l-2 border-l-red-600">
@@ -50,12 +50,10 @@ const PostsPage = () => {
                             </div>
                         </div>
 
+
                         {/* main content */}
-                        <div className="relative flex justify-around h-full w-full overflow-hidden py-20 md:py-10">
-                            <div className="background-image">
-                                <img className="h-full min-h-screen w-screen" src="/images/red.jpg" alt="Red background for Glasmorphism effect" />
-                            </div>
-                            <div className="backdrop-blur-lg md:bg-white/40  flex flex-col items-center space-y-10 w-full h-full  md:w-3/4 ">
+                        <div className="relative flex justify-around h-full w-full overflow-hidden ">
+                            <div className="backdrop-blur-lg flex flex-col items-center space-y-10 w-full h-full  md:w-3/4 ">
                                 <div className="p-4 space-y-4 flex flex-col h-full">
                                     <GlasmorphicBlogPost
                                         title="The Power of TypeScript"
@@ -79,7 +77,6 @@ const PostsPage = () => {
                                         imageUrl="/images/x4.jpg"
                                     />
                                 </div>
-
 
                             </div>
                             {/* <RightSideBar /> */}

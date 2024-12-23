@@ -56,38 +56,14 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       artist: "Mercah ft Namadingo",
       avatar: "/images/mlw.jpg",
       audio: "/a4.mp3"
-    },
-    {
-      title: 'Ghetto Anthem',
-      artist: "Chizmo",
-      avatar: "/images/chizmo.jpg",
-      audio: "/a1.mp3"
-    },
-    {
-      title: 'Curren$y',
-      artist: "Bal Habour Brunch",
-      avatar: "/images/sok.jpg",
-      audio: "/a2.mp3"
-    },
-    {
-      title: 'Afana Ceez',
-      artist: "kuno ayi",
-      avatar: "/images/abale.jpg",
-      audio: "/a3.mp3"
-    },
-    {
-      title: 'Obhebha',
-      artist: "Mercah ft Namadingo",
-      avatar: "/images/mlw.jpg",
-      audio: "/a4.mp3"
-    },
+    }
   ]
   const { setAudio, setPlaylist, setPlaying } = useContext(AudioContext)
 
   return (
     <section className="embla w-full">
       <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container space-x-5 w-full">
+        <div className="embla__container space-x-5 w-full pl-8">
           {
             tracks.map(track => (
               <Image loading='lazy' height={560} width={560} key={track.audio}

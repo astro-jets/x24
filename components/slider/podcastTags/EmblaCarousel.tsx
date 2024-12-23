@@ -1,18 +1,8 @@
 "use client"
 
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback } from 'react'
 import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
-import {
-  PrevButton,
-  NextButton,
-  usePrevNextButtons
-} from './EmblaCarouselArrowButtons'
-import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
-import { FaTicketAlt } from 'react-icons/fa'
-import Link from 'next/link'
-import Image from 'next/image'
-import { BsArrowRightCircle } from 'react-icons/bs'
 
 type PropType = {
   slides: number[]
@@ -20,20 +10,8 @@ type PropType = {
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
-
-  const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-    const autoplay = emblaApi?.plugins()?.autoplay
-    if (!autoplay) return
-  }, [])
-
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi, onNavButtonClick)
+  const { options } = props
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tags = ['Home', 'Videos', 'Reels', 'Community', 'Playlists', 'Search', 'Other'];
 
   return (

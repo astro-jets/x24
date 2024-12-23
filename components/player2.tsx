@@ -74,7 +74,7 @@ const Player = () => {
 
     return (
 
-        <div className={`flex flex-col w-full md:max-h-10 md:p-0 md:rounded-none  md:bg-[#ff3030] bg-white/40 h-full rounded-tl-3xl rounded-tr-3xl pb-  backdrop-blur-lg ${isOpen ? 'h-[120vh] py-4' : 'h-20'}`}>
+        <div className={`flex flex-col w-full md:max-h-10 md:p-0 md:rounded-none  md:bg-[#ff3030] bg-white/40 h-full rounded-tl-3xl rounded-tr-3xl  backdrop-blur-lg ${isOpen ? 'h-[120vh] py-4' : 'h-20'}`}>
             <div className={` md:hidden flex-col w-full h-[80%] pb-6 space-y-6 ${isOpen ? 'flex' : 'hidden'}`}>
                 <div className="flex space-x-6 h-20 items-center">
                     <img src="/images/sting.jpg" className='w-20 h-20 rounded-full object-cover' alt="" />
@@ -107,40 +107,42 @@ const Player = () => {
                 </div>
 
             </div>
-            <div className="w-full h-30 flex flex-col px-6 space-y-1  py-2 md:space-x-4 items-center md:flex-row md:h-20">
-                {/* Audio Seek */}
-                <div className="w-full h-full bmb-4 flex flex-col items-center justify-center">
-                    <Slider
-                        min={0}
-                        max={100}
-                        value={audioProgress}
-                        onChange={handleSeek}
-                        onAfterChange={handleSliderMouseUp} // Triggered after seeking is done
-                        className="custom-slider" // You can add your custom class for styling
-                    />
+            <div className="w-full h-40 flex flex-col px-6 space-y-3  py-2 md:space-x-4 items-center md:flex-row md:h-20">
+
+                <div className="flex items-center h-18 space-x-4 w-full md:hidden">
+                    <img src={audio?.avatar} className={`rounded-full object-cover h-18 w-18 cursor-pointer ${playing ? 'rotation-animation' : ''}`} onClick={() => { setIsOpen(!isOpen) }} alt="" />
+                    <div className='w-3/4 h-18 flex flex-col space-y-3'>
+                        <div className="w-full flex flex-col justify-start text-white items-start">
+                            <p className="text-md font-thin">{audio?.artist}</p>
+                            <p className="text-sm text-[#cf2f2f]">{audio?.title}</p>
+                        </div>
+                        {/* Audio Seek */}
+                        <div className="w-full h-full bmb-4 flex flex-col items-center justify-center">
+                            <Slider
+                                min={0}
+                                max={100}
+                                value={audioProgress}
+                                onChange={handleSeek}
+                                onAfterChange={handleSliderMouseUp} // Triggered after seeking is done
+                                className="custom-slider" // You can add your custom class for styling
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div className="flex items-center  space-x-4 w-full md:hidden">
-                    <img src={audio?.avatar} className="rounded-full object-cover h-15 w-15 cursor-pointer" onClick={() => { setIsOpen(!isOpen) }} alt="" />
-                    <div className="flex flex-col justify-start text-white items-start">
-                        <p className="text-lg">{audio?.artist}</p>
-                        <p className="text-sm text-gray-200">{audio?.title}</p>
-                    </div>
 
-
-                    <div className="controls flex items-center space-x-6">
-                        <IoIosSkipBackward color="white" className='cursor-pointer' size={20} onClick={() => { prevTrack() }} />
-                        {
-                            playing
-                                ?
-                                <IoIosPause className='cursor-pointer' color="red" size={40} onClick={togglePlayPause} />
-                                :
-                                <IoIosPlayCircle className='cursor-pointer' color="red" size={40} onClick={togglePlayPause} />
-                        }
-                        <IoIosSkipForward className='cursor-pointe' size={20}
-                            color="white"
-                            onClick={() => { nextTrack() }}
-                        />
-                    </div>
+                <div className="controls w-full flex items-center space-x-6">
+                    <IoIosSkipBackward color="white" className='cursor-pointer' size={20} onClick={() => { prevTrack() }} />
+                    {
+                        playing
+                            ?
+                            <IoIosPause className='cursor-pointer' color="red" size={40} onClick={togglePlayPause} />
+                            :
+                            <IoIosPlayCircle className='cursor-pointer' color="red" size={40} onClick={togglePlayPause} />
+                    }
+                    <IoIosSkipForward className='cursor-pointe' size={20}
+                        color="white"
+                        onClick={() => { nextTrack() }}
+                    />
                 </div>
 
                 <audio id="mainAudio" ref={audioElement} preload='lazy' />

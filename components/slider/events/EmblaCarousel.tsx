@@ -1,8 +1,7 @@
 "use client"
 
-import React, { useCallback } from 'react'
-import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
-import Autoplay from 'embla-carousel-autoplay'
+import React from 'react'
+import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import Link from 'next/link'
 import { FaTheaterMasks } from 'react-icons/fa'
@@ -14,7 +13,7 @@ type PropType = {
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
 
   const events = [
     {
@@ -33,7 +32,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   return (
     <section className="embla w-full">
       <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container space-x-5 w-full">
+        <div className="embla__container space-x-5 w-full pl-8">
           {
             events.map(event => (
 

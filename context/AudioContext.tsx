@@ -48,7 +48,8 @@ export const AudioContextProvider: FC<ProviderProps> = ({
     children,
     isPlaying = false,
     initial = { artist: '', audio: '', avatar: '', title: '' },
-    initialPlaylist = [] }) => {
+    initialPlaylist = []
+}) => {
     const [playing, setPlaying] = useState(isPlaying);
     const [audio, setAudio] = useState(initial);
     const [playlist, setPlaylist] = useState(initialPlaylist);

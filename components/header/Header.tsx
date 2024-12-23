@@ -50,7 +50,7 @@ const Navbar = () => {
                 <div className=" w-12 h-12 flex items-center justify-center py-2 px-4 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
                   <LiaUserAstronautSolid size={20} color="white" />
                 </div>
-                <p className="text-blac dark:text-white text-xs">Profile</p>
+                <p className="text-black dark:text-white text-xs">Profile</p>
               </Link>
               <Link href="/store" className="flex flex-col space-y-2 items-center">
                 <div className=" w-12 h-12 flex items-center justify-center py-2 px-4 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
@@ -67,44 +67,44 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="navbar-item w-full">
-              <Link href="/store" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
+              <Link href="/store" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
                 <BsCart size={20} color="white" />
                 <p className="">Store</p>
               </Link>
             </li>
 
             <li className="navbar-item">
-              <Link href="/charts" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
+              <Link href="/charts" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
                 <FaHeadphones size={20} color="white" />
-                <p>Charts</p>
+                <p className='text-black dark:text-white'>Charts</p>
               </Link>
             </li>
 
             <li className="navbar-item">
-              <Link href="/artists" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
+              <Link href="/artists" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
                 <FaUsers size={20} color="white" />
-                <p>Artists</p>
+                <p className='text-black dark:text-white'>Artists</p>
               </Link>
             </li>
 
             <li className="navbar-item">
-              <Link href="/events" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
+              <Link href="/events" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
                 <FaTicketAlt size={20} color="white" />
-                <p>Events</p>
+                <p className='text-black dark:text-white'>Events</p>
               </Link>
             </li>
 
             <li className="navbar-item">
-              <Link href="/blogs" className="flex space-x-2 items-center text-white  py-2 px-4 rounded-lg w-4/5">
+              <Link href="/blogs" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
                 <FaComment size={20} color="white" />
-                <p>Blog</p>
+                <p className='text-black dark:text-white'>Blog</p>
               </Link>
             </li>
 
             <div className="navbar-item hide-lg">
               <button className="rounded-lg text-white bg-red-500 w-1/2 flex items-center justify-center space-x-3 py-3">
                 <BsDoorOpen size={20} color="white" />
-                <p>Log In or Register</p>
+                <p className='text-black dark:text-white'>Log In or Register</p>
               </button>
             </div>
           </ul>

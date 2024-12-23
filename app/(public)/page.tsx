@@ -1,5 +1,6 @@
 "use client"
 
+import TopTenCharts from "@/components/charts/TopTen";
 import Loader from "@/components/loader/Loader";
 import Search from "@/components/search/Form";
 import RightSideBar from "@/components/sidbebar/Sidebar";
@@ -8,14 +9,15 @@ import EventsSlider from "@/components/slider/events/Events";
 import PodcastSlider from "@/components/slider/podcasts/Podcasts";
 import Slider from "@/components/slider/top/Slider";
 import { useState } from "react";
-import { BsBell, BsGear, BsSearch } from "react-icons/bs";
+import { BsBell, BsGear, BsPeople, BsSearch, BsVinyl } from "react-icons/bs";
+import { LiaRecordVinylSolid } from "react-icons/lia";
 
 const LandingPage = () => {
     const [showSearch, setShowSearch] = useState(false);
     return (
         <>
             <Loader />
-            <div className="w-full h-full md:bg-[url('/images/x.jpg')] md:mt-0">
+            <div className="w-full h-full bg-no-repeat bg-cover bg-[url('/images/x.jpg')] md:mt-0 p-0">
                 <div className="md:backdrop-blur-lg md:bg-white/40  h-full w-full  flex flex-row justify-between ">
                     {/* Sidebar */}
                     <div className=" backdrop-blur-lg hidden md:flex flex-col space-y-8 py-4 px-4 w-[15%] h-screen ">
@@ -30,7 +32,7 @@ const LandingPage = () => {
 
                     </div>
                     {/* Main */}
-                    <div className="relative bg-white dark:bg-[#000] h-full pb-20 w-full md:w-[85%]  flex flex-col rounded-tl-[30px] rounded-bl-[30px]">
+                    <div className="relative bg-white/60 dark:bg-[#0f0f0fce] h-full pb-4 w-full md:w-[85%]  flex flex-col rounded-tl-[30px] rounded-bl-[30px]">
                         {/* Topbar */}
                         <div className="h-20 w-full hidden md:flex items-center justify-between space-x-6 px-4">
                             <p className="text-black dark:text-white text-sm w-1/3 pl-3 border-0 border-l-2 border-l-red-600">
@@ -64,16 +66,77 @@ const LandingPage = () => {
                                         <Slider />
                                     </div>
                                 </div>
-                                <div className="flex flex-col min-h-[180vh] sapce-y-12 h-full w-full">
+                                <div className="flex flex-col space-y-6 h-full w-full">
+
                                     <div className="w-full md:h-[42vh] flex py-2 flex-col items-start overflow-hidden">
-                                        <h1 className="text-red-400 px-4">Popular Artists</h1>
+                                        <h2 className="text-xl px-4 font-thin tracking-tight text-black dark:text-white">Trending Now</h2>
                                         <ArtistsSlider />
                                     </div>
-                                    <div className="flex flex-col h-full w-full items-start">
+
+                                    {/* Chart 1: Trending Songs */}
+                                    <TopTenCharts />
+
+                                    {/* Upcoming Events */}
+                                    <div className="flex flex-col h-65 w-full items-start">
                                         <EventsSlider />
                                     </div>
-                                    <div className="flex flex-col h-full w-full items-start">
+
+                                    {/* Chart 2: Top Albums */}
+                                    <div className="px-2 w-full h-full space-y-4">
+                                        <div className="flex w-full items-center space-x-1">
+                                            <LiaRecordVinylSolid size={25} className="fill-black dark:fill-white" />
+                                            <h2 className="text-xl font-thin tracking-tight text-black dark:text-white">Top Albums</h2>
+                                        </div>
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                            {Array.from({ length: 4 }).map((_, index) => (
+                                                <div
+                                                    key={index}
+                                                    className=" shadow-[#222] shadow-4 dark:shadow-1 dark:bg-[#0f0f0fce] bg-[#fff]  p-1 rounded-lg hover:bg-gray-700 text-center"
+                                                >
+                                                    {/* Album Cover */}
+                                                    <div className="w-full h-30 rounded-lg overflow-hidden">
+                                                        <img
+                                                            src={`/images/mlw.jpg`}
+                                                            alt="Album Art"
+                                                            className="object-cover w-full h-full"
+                                                        />
+                                                    </div>
+                                                    <h3 className="text-lg font-medium mt-2">Album {index + 1}</h3>
+                                                    <p className="text-gray-400 text-sm">Artist Name</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Featured Podcasts */}
+                                    <div className="flex flex-col h-70  w-full items-start">
                                         <PodcastSlider />
+                                    </div>
+
+                                    {/* Chart 3: Popular Artists */}
+                                    <div className="px-2 w-full h-full space-y-2">
+                                        <div className="flex w-full items-center space-x-2">
+                                            <BsPeople size={20} className="fill-black dark:fill-white" />
+                                            <h2 className="text-xl font-thin tracking-tight text-black dark:text-white">Featured Artists</h2>
+                                        </div>
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                            {Array.from({ length: 4 }).map((_, index) => (
+                                                <div
+                                                    key={index}
+                                                    className=" shadow-[#222] shadow-4 dark:shadow-1 dark:bg-[#0f0f0f5b] bg-[#fff]  p-4 rounded-lg hover:bg-gray-700 text-center"
+                                                >
+                                                    {/* Artist Image */}
+                                                    <div className="w-20 h-20 mx-auto rounded-full overflow-hidden">
+                                                        <img
+                                                            src={`/images/mlw.jpg`}
+                                                            alt="Artist"
+                                                            className="object-cover w-full h-full"
+                                                        />
+                                                    </div>
+                                                    <h3 className="text-lg font-medium mt-2">Artist {index + 1}</h3>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
 

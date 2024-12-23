@@ -42,22 +42,22 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   return (
     <section className="embla w-full">
       <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container space-x-5 w-full">
+        <div className="embla__container py-4 space-x-5 w-full pl-8">
           {
             tracks.map(track => (
 
-              <div key={track.title} className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2 max-h-60 h-full min-w-45">
+              <div key={track.title} className="group relative backdrop-blur-lg shadow-[#222] shadow-4 dark:shadow-1 dark:bg-[#0f0f0fce] bg-[#fff] rounded-2xl p-2 max-h-60 h-full min-w-45">
                 <div className="aspect-h-1 h-40 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
                   <img src={track.avatar} alt="Front of men&#039;s Event Name in black."
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                 </div>
                 <div className="mt-4 flex justify-between">
                   <div>
-                    <h3 className="text-sm text-white">
-                      <a href={`${track.url}`}>
+                    <h3 className="text-sm text-black dark:text-white">
+                      <Link href={`${track.url}`}>
                         <span aria-hidden="true" className="absolute inset-0"></span>
                         {track.title}
-                      </a>
+                      </Link>
                     </h3>
                   </div>
 
