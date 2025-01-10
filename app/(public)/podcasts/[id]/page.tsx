@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { BsBell, BsFire } from "react-icons/bs";
 import { MdOutlineMovie } from "react-icons/md";
@@ -8,40 +8,61 @@ import { BiCameraMovie } from "react-icons/bi";
 import PodcastTags from "@/components/slider/podcastTags/PodcastTags";
 import { useEffect, useState } from "react";
 import { videosProps } from "@/types/video";
-import moment from 'moment'
-import he from 'he';
-export default function YouTubeChannel() {
+import moment from "moment";
+import he from "he";
+import Head from "next/head"; // Import Head for SEO
 
+export default function YouTubeChannel() {
     const [videos, setVideos] = useState<videosProps>([]);
 
     useEffect(() => {
         async function fetchVideos() {
-            const CHANNEL_ID = 'UChjZB_B5f76x3ZkrASt348Q';
+            const CHANNEL_ID = "UChjZB_B5f76x3ZkrASt348Q";
             const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&maxResults=5&order=date`;
-
 
             try {
                 const response = await fetch(endpoint);
                 const data = await response.json();
-                console.log("Data => ", data)
+                console.log("Data => ", data);
                 setVideos(data.items);
             } catch (error) {
-                console.error('Error fetching videos:', error);
+                console.error("Error fetching videos:", error);
             }
         }
         fetchVideos();
     }, []);
 
-    const coverImage = '/images/podcasts/mcast.jpg'; // Replace with actual cover image URL
-
+    const coverImage = "/images/podcasts/mcast.jpg"; // Replace with actual cover image URL
+    const podcastName = "Podcast Malawi"; // Dynamic podcast name
+    const description = "Discover the best Malawian podcasts, featuring interviews, stories, and insights from the region.";
+    const pageUrl = "https://xstudio.vercel.app/podcasts/pocast_malawi"; // Replace with actual page URL
 
     return (
         <>
+            <Head>
+                {/* Primary SEO Meta Tags */}
+                <title>{podcastName} | Studio X</title>
+                <meta name="description" content={description} />
+
+                {/* Open Graph / Facebook Meta Tags */}
+                <meta property="og:title" content={podcastName} />
+                <meta property="og:description" content={description} />
+                <meta property="og:image" content={coverImage} />
+                <meta property="og:url" content={pageUrl} />
+                <meta property="og:type" content="website" />
+
+                {/* Twitter Meta Tags */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={podcastName} />
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:image" content={coverImage} />
+            </Head>
+
             <Loader />
             <div className="bg-[#111] text-white min-h-screen">
-                {/* Header  */}
+                {/* Header */}
                 <div className="sticky top-0 bg-[#222] flex items-center px-4 py-3 min-20 shadow-md z-99">
-                    <h1 className="text-lg font-semibold">PODCAST MALAWI</h1>
+                    <h1 className="text-lg font-semibold">{podcastName}</h1>
                     <div className="ml-auto flex items-center space-x-4">
                         <button className="text-gray-400 hover:text-white">
                             <BsFire color="red" size={20} />
@@ -51,6 +72,7 @@ export default function YouTubeChannel() {
                         </button>
                     </div>
                 </div>
+
                 {/* Top Cover Section */}
                 <div className="relative h-80">
                     <Image
@@ -70,10 +92,10 @@ export default function YouTubeChannel() {
                                 className="object-cover"
                             />
                         </div>
-                        <h1 className="text-2xl font-bold mt-4">PODCAST MALAWI</h1>
-
+                        <h1 className="text-2xl font-bold mt-4">{podcastName}</h1>
                     </div>
                 </div>
+
                 {/* Content */}
                 <main className="py-6 pb-20 space-y-8">
                     <PodcastTags />
@@ -83,48 +105,51 @@ export default function YouTubeChannel() {
                         <div className="flex space-x-1 px-4">
                             <BiCameraMovie
                                 className="animate-tilt transition-transform"
-                                size={24} color="white" />
-                            <h2 className="text-xl font-semibold">
-                                Reels
-                            </h2>
+                                size={24}
+                                color="white"
+                            />
+                            <h2 className="text-xl font-semibold">Reels</h2>
                         </div>
                         <Reels />
                     </div>
 
-                    <div className=" text-white px-4 w-full space-y-4">
+                    <div className="text-white px-4 w-full space-y-4">
                         <div className="flex items-center space-x-1">
                             <MdOutlineMovie className="transition-all " size={24} color="white" />
-                            <h2 className="text-xl font-semibold">
-                                Videos
-                            </h2>
+                            <h2 className="text-xl font-semibold">Videos</h2>
                         </div>
                         <div className="space-y-7">
                             {videos.map((video, index) => (
-                                <div key={index} className="border border-gray-300 rounded-lg overflow-hidden">
+                                <div
+                                    key={index}
+                                    className="border border-gray-300 rounded-lg overflow-hidden"
+                                >
                                     {/* YouTube Video Embed */}
                                     <iframe
                                         width="100%"
                                         height="200"
                                         src={`https://www.youtube.com/embed/${video.id.videoId}`}
                                         title={video.snippet.title}
-                                        // frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
                                     ></iframe>
                                     {/* Video Info */}
                                     <div className="p-2">
-                                        <h3 className="text-lg font-medium">{he.decode(video.snippet.title)}</h3>
+                                        <h3 className="text-lg font-medium">
+                                            {he.decode(video.snippet.title)}
+                                        </h3>
                                         <p className="text-sm text-gray-400">
                                             Published: {moment(video.snippet.publishedAt).fromNow()}
                                         </p>
 
-                                        <p className="text-sm text-white">{video.snippet.channelTitle}</p>
+                                        <p className="text-sm text-white">
+                                            {video.snippet.channelTitle}
+                                        </p>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-
                 </main>
             </div>
         </>
