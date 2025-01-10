@@ -9,7 +9,7 @@ import EventsSlider from "@/components/slider/events/Events";
 import PodcastSlider from "@/components/slider/podcasts/Podcasts";
 import Slider from "@/components/slider/top/Slider";
 import { useState } from "react";
-import { BsBell, BsGear, BsPeople, BsSearch, BsVinyl } from "react-icons/bs";
+import { BsBell, BsGear, BsPeople, BsSearch } from "react-icons/bs";
 import { LiaRecordVinylSolid } from "react-icons/lia";
 
 const LandingPage = () => {
@@ -96,7 +96,7 @@ const LandingPage = () => {
                                                     {/* Album Cover */}
                                                     <div className="w-full h-30 rounded-lg overflow-hidden">
                                                         <img
-                                                            src={`/images/mlw.jpg`}
+                                                            src={`/images/albumart/sok.jpg`}
                                                             alt="Album Art"
                                                             className="object-cover w-full h-full"
                                                         />
@@ -128,7 +128,7 @@ const LandingPage = () => {
                                                     {/* Artist Image */}
                                                     <div className="w-20 h-20 mx-auto rounded-full overflow-hidden">
                                                         <img
-                                                            src={`/images/mlw.jpg`}
+                                                            src={`/images/albumart/sok.jpg`}
                                                             alt="Artist"
                                                             className="object-cover w-full h-full"
                                                         />

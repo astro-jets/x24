@@ -18,15 +18,15 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const events = [
     {
       title: 'Tyler Show',
-      avatar: '/images/e2.jpeg'
+      avatar: '/images/events/e2.jpeg'
     },
     {
       title: 'Lake of Stars',
-      avatar: '/images/e4.jpg'
+      avatar: '/images/events/e4.jpg'
     },
     {
       title: 'Sand Music Festival',
-      avatar: '/images/e5.jpg'
+      avatar: '/images/events/e5.jpg'
     },
   ]
   return (

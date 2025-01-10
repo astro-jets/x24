@@ -4,7 +4,7 @@ import { BiSkipNext, BiSkipPrevious, BiSolidPlaylist } from "react-icons/bi";
 import { AudioContext } from "@/context/AudioContext";
 import { useContext, useEffect } from "react";
 import { FaListAlt } from "react-icons/fa";
-import Player from "../player2";
+import Player from "../player/player2";
 
 const RightSideBar = () => {
     const { audio, playlist, nextTrack, prevTrack } = useContext(AudioContext)

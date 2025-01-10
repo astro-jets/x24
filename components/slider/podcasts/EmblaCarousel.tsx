@@ -19,22 +19,22 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const tracks = [
     {
       title: 'Made on monday',
-      avatar: "/images/mom.png",
+      avatar: "/images/podcasts/mom.png",
       url: "/podcasts/1"
     },
     {
       title: 'Mac G Show',
-      avatar: "/images/macg.jpg",
+      avatar: "/images/podcasts/macg.jpg",
       url: "/podcasts/1"
     },
     {
       title: 'Mlw Podcast',
-      avatar: "/images/mcast.jpg",
+      avatar: "/images/podcasts/mcast.jpg",
       url: "/podcasts/1"
     },
     {
       title: 'Jah Kev Show',
-      avatar: "/images/jk.jpg",
+      avatar: "/images/podcasts/jk.jpg",
       url: "/podcasts/1"
     }
   ]
@@ -65,7 +65,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               </div>
             ))
           }
-          <Link href={'/events'} className="bg-[#333] w-full min-w-40 mx-4 rounded-lg overflow-hidden">
+          <Link href={'/podcasts'} className="bg-[#333] w-full min-w-40 mx-4 rounded-lg overflow-hidden">
             <div className="relative flex items-center justify-center h-40">
               {/* Thumbnail Image */}
               <FaMicrophoneAlt fontWeight={20} size={60} color="white" />

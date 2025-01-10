@@ -19,7 +19,7 @@ const Events = () => {
 
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/e2.jpeg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/events/2.jpeg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -39,7 +39,7 @@ const Events = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/e5.jpg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/events/5.jpg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -59,7 +59,7 @@ const Events = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/e4.jpg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/events/4.jpg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -81,7 +81,7 @@ const Events = () => {
 
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/e.jpg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/events/.jpg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -101,7 +101,7 @@ const Events = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/e3.jpg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/events/3.jpg" alt="Front of men&#039;s Event Name in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>

@@ -25,13 +25,13 @@ function Slider() {
 
             <div className="relative hover-img max-h-[60vh] overflow-hidden">
                 <a href="#">
-                    <img className="max-w-full w-full mx-auto object-cover h-80" src="/images/mlw.jpg" alt="Image description" />
+                    <img className="max-w-full w-full mx-auto object-cover h-80" src="/images/posts/podfest.jpg" alt="Image description" />
                 </a>
             </div>
 
             <div className="relative hover-img max-h-[60vh] overflow-hidden">
                 <a href="#">
-                    <img className="max-w-full w-full mx-auto object-cover h-80" src="/images/abale.jpg" alt="Image description" />
+                    <img className="max-w-full w-full mx-auto object-cover h-80" src="/images/posts/x3.jpg" alt="Image description" />
                 </a>
             </div>
 

@@ -18,22 +18,22 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const tracks = [
     {
       title: 'Made on monday',
-      avatar: "/images/mom.png",
+      avatar: "/images/podcasts/mom.png",
       url: "/podcasts/1"
     },
     {
       title: 'Mac G Show',
-      avatar: "/images/macg.jpg",
+      avatar: "/images/podcasts/macg.jpg",
       url: "/podcasts/1"
     },
     {
       title: 'Mlw Podcast',
-      avatar: "/images/mcast.jpg",
+      avatar: "/images/podcasts/mcast.jpg",
       url: "/podcasts/1"
     },
     {
       title: 'Jah Kev Show',
-      avatar: "/images/jk.jpg",
+      avatar: "/images/podcasts/jk.jpg",
       url: "/podcasts/1"
     }
   ]

@@ -153,7 +153,7 @@ const Player = () => {
         <div className={`flex flex-col w-full md:max-h-10 md:p-0 md:rounded-none  md:bg-[#ff3030] bg-white/40 h-full rounded-tl-3xl rounded-tr-3xl pb-  backdrop-blur-lg ${isOpen ? 'h-[120vh] py-4' : 'h-20'}`}>
             <div className={` md:hidden flex-col w-full h-[80%] pb-6 space-y-6 ${isOpen ? 'flex' : 'hidden'}`}>
                 <div className="flex space-x-6 h-20 items-center">
-                    <img src="/images/sting.jpg" className='w-20 h-20 rounded-full object-cover' alt="" />
+                    <img src="/images/users/sting.jpg" className='w-20 h-20 rounded-full object-cover' alt="" />
                     <div className="flex flex-col ">
                         <p className='text-lg'>Sting Chizmo</p>
                         <div className="rounded-2xl shadow-3 bg-[#111] px-4 py-2">

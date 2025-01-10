@@ -3,11 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 import { IoIosPause, IoIosPlayCircle, IoIosSkipBackward, IoIosSkipForward } from "react-icons/io";
 import { FaDownload, FaHeart, FaShare, FaVideo } from 'react-icons/fa';
 import Slider from "react-slider"
-import { useAudio } from '@/context/AudioContext';
+import { useAudioStore } from '@/app/stores/MusicStore';
+// import { useAudio } from '@/context/AudioContext';
 
 const Player = () => {
     const audioElement = useRef<HTMLAudioElement>(null);
-    const { audio, nextTrack, prevTrack, playing, setPlaying } = useAudio();
+    const { audio, nextTrack, prevTrack, playing, setPlaying } = useAudioStore();
     const [isOpen, setIsOpen] = useState(true)
     const [audioProgress, setAudioProgress] = useState(0);
     const [audioPlayer, setAP] = useState<HTMLAudioElement>();
@@ -46,6 +47,17 @@ const Player = () => {
         }
     }, [audio, seeking]);
 
+    // Handle play pause Global state
+    useEffect(() => {
+        if (audioPlayer) {
+            if (playing) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        }
+    }, [playing, audioPlayer]);
+
     // Handle when the user manually changes the slider (seek position)
     const handleSeek = (value: number) => {
         if (audioPlayer?.currentTime) {
@@ -61,8 +73,6 @@ const Player = () => {
         setSeeking(false);  // Mark seeking as false when the user stops interacting
     };
 
-
-
     const togglePlayPause = () => {
         if (playing) {
             setPlaying(false)
@@ -75,9 +85,9 @@ const Player = () => {
     return (
 
         <div className={`flex flex-col w-full md:max-h-10 md:p-0 md:rounded-none  md:bg-[#ff3030] bg-white/40 h-full rounded-tl-3xl rounded-tr-3xl  backdrop-blur-lg ${isOpen ? 'h-[120vh] py-4' : 'h-20'}`}>
-            <div className={` md:hidden flex-col w-full h-[80%] pb-6 space-y-6 ${isOpen ? 'flex' : 'hidden'}`}>
+            <div className={` md:hidden flex-col w-full h-[68%] pb-6 space-y-6 ${isOpen ? 'flex' : 'hidden'}`}>
                 <div className="flex space-x-6 h-20 items-center">
-                    <img src="/images/sting.jpg" className='w-20 h-20 rounded-full object-cover' alt="" />
+                    <img src="/images/users/sting.jpg" className='w-20 h-20 rounded-full object-cover' alt="" />
                     <div className="flex flex-col ">
                         <p className='text-lg'>Sting Chizmo</p>
                         <div className="rounded-2xl shadow-3 bg-[#111] px-4 py-2">
@@ -105,10 +115,8 @@ const Player = () => {
                         <div className="lyric text-3xl"></div>
                     </div>
                 </div>
-
             </div>
-            <div className="w-full h-40 flex flex-col px-6 space-y-3  py-2 md:space-x-4 items-center md:flex-row md:h-20">
-
+            <div className="w-full h-[30%] flex flex-col px-6 space-y-2  py-2 md:space-x-4 items-center md:flex-row md:h-20">
                 <div className="flex items-center h-18 space-x-4 w-full md:hidden">
                     <img src={audio?.avatar} className={`rounded-full object-cover h-18 w-18 cursor-pointer ${playing ? 'rotation-animation' : ''}`} onClick={() => { setIsOpen(!isOpen) }} alt="" />
                     <div className='w-3/4 h-18 flex flex-col space-y-3'>

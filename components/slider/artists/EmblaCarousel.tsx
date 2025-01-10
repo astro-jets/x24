@@ -1,79 +1,61 @@
 "use client"
 
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { AudioContext } from '@/context/AudioContext'
 import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
-import {
-  PrevButton,
-  NextButton,
-  usePrevNextButtons
-} from './EmblaCarouselArrowButtons'
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
-
+import { useAudioStore } from '@/app/stores/MusicStore'
+import { axiosInstance } from '@/app/api/tracks'
 type PropType = {
   slides: number[]
   options?: EmblaOptionsType
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+  const { options } = props
+  const [emblaRef] = useEmblaCarousel(options, [Autoplay()])
 
-  const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
-    const autoplay = emblaApi?.plugins()?.autoplay
-    if (!autoplay) return
-  }, [])
-
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi, onNavButtonClick)
-  const tracks = [
-    {
-      title: 'Ghetto Anthem',
-      artist: "Chizmo",
-      avatar: "/images/chizmo.jpg",
-      audio: "/a1.mp3"
-    },
-    {
-      title: 'Curren$y',
-      artist: "Bal Habour Brunch",
-      avatar: "/images/sok.jpg",
-      audio: "/a2.mp3"
-    },
-    {
-      title: 'Afana Ceez',
-      artist: "kuno ayi",
-      avatar: "/images/abale.jpg",
-      audio: "/a3.mp3"
-    },
-    {
-      title: 'Obhebha',
-      artist: "Mercah ft Namadingo",
-      avatar: "/images/mlw.jpg",
-      audio: "/a4.mp3"
+  const { audio, playing, setAudio, setQueue, setPlaying } = useAudioStore();
+  const [tracks, setTracks] = useState<any[]>([])
+  useEffect(() => {
+    const fetchTracks = async () => {
+      try {
+        const res = await axiosInstance.get('/tracks/');
+        console.log("Axios => ", res)
+        setTracks(res.data.tracks);
+      }
+      catch { }
     }
-  ]
-  const { setAudio, setPlaylist, setPlaying } = useContext(AudioContext)
+    fetchTracks();
+  }, [])
 
   return (
     <section className="embla w-full">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container space-x-5 w-full pl-8">
           {
-            tracks.map(track => (
-              <Image loading='lazy' height={560} width={560} key={track.audio}
-                className="w-30 h-30  md:w-45 md:h-45  cursor-pointer rounded-full"
-                onClick={() => {
-                  setAudio(track);
-                  setPlaylist(tracks);
-                  setPlaying(true)
-                }} src={track.avatar} alt="" />
-            ))
+            tracks.length ?
+              tracks.map(track => (
+                <Image loading='lazy' height={560} width={560} key={track.audio}
+                  className={`w-25 h-25  md:w-45 md:h-45  cursor-pointer rounded-full ${audio.title == track.title && playing ? 'animate-rotating' : ''}`}
+                  onClick={() => {
+
+                    if (audio.title == track.title) {
+                      setPlaying(!playing);
+                    } else {
+                      setAudio(track);
+                      setQueue(tracks);
+                      setPlaying(true)
+                    }
+                  }}
+                  src={track.avatar} alt="" />
+              ))
+              :
+              Array.from({ length: 4 }).map((_, index) => (
+                <div className="min-w-30 min-h-30  md:w-45 md:h-45  bg-slate-900 rounded-full"></div>
+              ))
           }
         </div>
       </div>

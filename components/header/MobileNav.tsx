@@ -2,19 +2,20 @@
 
 import Link from "next/link";
 import { useEffect, useState, useContext } from "react";
-import { FaComment, FaHeadphones, FaMicrophone, FaTheaterMasks, FaTicketAlt, FaUsers } from "react-icons/fa"
+import { FaMicrophone, FaTheaterMasks, FaUsers } from "react-icons/fa"
 import { LiaUserAstronautSolid } from "react-icons/lia"
 import { IoMdHeadset } from "react-icons/io"
-import { BsCart, BsGear, BsSoundwave, BsPeople, BsDoorOpen } from "react-icons/bs";
-import { AudioContext } from "@/context/AudioContext";
-import Player from "../player2";
+import { BsCart, BsSoundwave, BsPeople } from "react-icons/bs";
+import Player from "../player/player2";
 import DarkModeSwitcher from "../themeMode/ThemeMode";
-import useColorMode from "@/hooks/useColorMode";
+import { useAudioStore } from "@/app/stores/MusicStore";
+
+
 const MobileNav = () => {
   const [showPlayer, setShowPlayer] = useState(false)
-  const { audio, setAudio } = useContext(AudioContext)
+  const { audio } = useAudioStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [colorMode, setColorMode] = useColorMode();
+
 
   useEffect(() => {
     setShowPlayer(false);
@@ -112,10 +113,10 @@ const MobileNav = () => {
             </div>
 
 
-            <div className={audio.avatar ? "rotation flex flex-col space-y-1 items-center" : "hidden"}
+            <div className={audio?.avatar ? "rotation flex flex-col space-y-1 items-center" : "hidden"}
               onClick={() => { setShowPlayer(!showPlayer) }}
             >
-              <img src={audio.avatar} className="w-12 h-12 rounded-full object-cover" />
+              <img src={audio?.avatar} className="w-12 h-12 rounded-full object-cover" />
             </div>
 
 
@@ -140,8 +141,8 @@ const MobileNav = () => {
           </div>
         </div>
         {/* Player */}
-        <div className={`${showPlayer ? "mobile-menu w-full flex justify-center" : "hidden"}`}>
-          <div className={`bottom-[8vh] h-[90vh] md:bottom-[5vh] w-[95%] md:w-[65%] flex items-start justify-start md:items-center md:justify-center ${showPlayer ? 'fixed rotation' : 'hidden'}`}>
+        <div className={`${showPlayer ? " relative h-full  mobile-menu w-full flex justify-center" : "hidden"}`}>
+          <div className={`bottom-[10vh] top-0 h-[90vh] md:bottom-[5vh] w-[95%] md:w-[65%] flex items-start justify-start md:items-center md:justify-center ${showPlayer ? 'fixed rotation' : 'hidden'}`}>
             <Player />
           </div>
         </div>

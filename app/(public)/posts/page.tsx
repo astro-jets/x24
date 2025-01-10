@@ -58,23 +58,23 @@ const PostsPage = () => {
                                     <GlasmorphicBlogPost
                                         title="The Power of TypeScript"
                                         excerpt="Repudiandae tenetur dolorum est vero ullam, at nostrum dolore laboriosam repellendus labore laborum ducimus natus architecto. Exercitationem, neque quia et omnis magnam eos saepe at fugiat, ducimus, doloribus error obcaecati quae read more ..."
-                                    // imageUrl="/images/x3.jpg"
+                                    // imageUrl="'images/posts/x3.jpg"
                                     />
 
                                     <GlasmorphicBlogPost
                                         title="The Power of TypeScript"
                                         excerpt="Exercitationem, neque quia et omnis magnam eos saepe at fugiat, ducimus, doloribus error obcaecati quae read more ..."
-                                        imageUrl="/images/x1.jpg"
+                                        imageUrl="'images/posts/x1.jpg"
                                     />
                                     <GlasmorphicBlogPost
                                         title="The Power of TypeScript"
                                         excerpt="Repudiandae tenetur dolorum est vero ullam, at nostrum dolore laboriosam repellendus labore laborum ducimus natus architecto. Exercitationem, neque quia et omnis magnam eos saepe at fugiat, ducimus, doloribus error obcaecati quae read more ..."
-                                        imageUrl="/images/x2.jpg"
+                                        imageUrl="'images/posts/x2.jpg"
                                     />
                                     <GlasmorphicBlogPost
                                         title="The Power of TypeScript"
                                         excerpt="Repudiandae tenetur dolorum est vero ullam, at nostrum dolore laboriosam repellendus labore laborum ducimus natus architecto. Exercitationem, neque quia et omnis magnam eos saepe at fugiat, ducimus, doloribus error obcaecati quae read more ..."
-                                        imageUrl="/images/x4.jpg"
+                                        imageUrl="'images/posts/x4.jpg"
                                     />
                                 </div>
 
