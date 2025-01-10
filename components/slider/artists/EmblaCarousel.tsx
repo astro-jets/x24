@@ -54,7 +54,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               ))
               :
               Array.from({ length: 4 }).map((_, index) => (
-                <div className="min-w-30 min-h-30  md:w-45 md:h-45  bg-slate-900 rounded-full"></div>
+                <div key={index} className="min-w-30 min-h-30  md:w-45 md:h-45  bg-slate-900 rounded-full"></div>
               ))
           }
         </div>

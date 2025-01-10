@@ -10,12 +10,14 @@ import { useEffect, useState } from "react";
 import { videosProps } from "@/types/video";
 import moment from 'moment'
 export default function YouTubeChannel() {
+
     const [videos, setVideos] = useState<videosProps>([]);
 
     useEffect(() => {
         async function fetchVideos() {
             const CHANNEL_ID = 'UChjZB_B5f76x3ZkrASt348Q';
-            const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${'AIzaSyCmav_D2l3_A0V5sjU43tY4r9Xebl3Uq3o'}&channelId=${CHANNEL_ID}&part=snippet&type=video&maxResults=5`;
+            const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&maxResults=5&order=date`;
+
 
             try {
                 const response = await fetch(endpoint);
@@ -104,17 +106,18 @@ export default function YouTubeChannel() {
                                         height="200"
                                         src={`https://www.youtube.com/embed/${video.id.videoId}`}
                                         title={video.snippet.title}
-                                        frameBorder="0"
+                                        // frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen
                                     ></iframe>
                                     {/* Video Info */}
                                     <div className="p-2">
                                         <h3 className="text-lg font-medium">{video.snippet.title}</h3>
-                                        <p className="text-sm text-gray-600">
-                                            Published on: {new Date(video.snippet.publishedAt).toDateString()}
+                                        <p className="text-sm text-gray-400">
+                                            Published: {moment(video.snippet.publishedAt).fromNow()}
                                         </p>
-                                        <p className="text-sm text-gray-600">{video.snippet.channelTitle}</p>
+
+                                        <p className="text-sm text-white">{video.snippet.channelTitle}</p>
                                     </div>
                                 </div>
                             ))}
