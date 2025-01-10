@@ -9,6 +9,7 @@ import PodcastTags from "@/components/slider/podcastTags/PodcastTags";
 import { useEffect, useState } from "react";
 import { videosProps } from "@/types/video";
 import moment from 'moment'
+import he from 'he';
 export default function YouTubeChannel() {
 
     const [videos, setVideos] = useState<videosProps>([]);
@@ -112,7 +113,7 @@ export default function YouTubeChannel() {
                                     ></iframe>
                                     {/* Video Info */}
                                     <div className="p-2">
-                                        <h3 className="text-lg font-medium">{video.snippet.title}</h3>
+                                        <h3 className="text-lg font-medium">{he.decode(video.snippet.title)}</h3>
                                         <p className="text-sm text-gray-400">
                                             Published: {moment(video.snippet.publishedAt).fromNow()}
                                         </p>
