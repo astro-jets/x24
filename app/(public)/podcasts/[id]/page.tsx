@@ -30,7 +30,7 @@ export default function YouTubeChannel() {
     }, []);
 
     const coverImage = '/images/podcasts/mcast.jpg'; // Replace with actual cover image URL
-    const profileImage = '/images/mcast.jpg'; // Replace with actual profile image URL
+
 
     return (
         <>
@@ -97,23 +97,6 @@ export default function YouTubeChannel() {
                         </div>
                         <div className="space-y-7">
                             {videos.map((video, index) => (
-                                // <div key={index} className="flex gap-4 items-start bg-[#222] rounded-2xl p-1">
-                                //     <div className="relative w-40 h-30">
-                                //         <Image
-                                //             src={video.snippet.thumbnails.high.url}
-                                //             alt={video.snippet.title}
-                                //             layout="fill"
-                                //             objectFit="cover"
-                                //             className="rounded-lg"
-                                //         />
-                                //     </div>
-                                //     <div className="flex-1">
-                                //         <h3 className="text-sm font-semibold line-clamp-2">{video.snippet.title}</h3>
-                                //         <p className="text-xs text-gray-400">
-                                //             300K • {moment(video.snippet.publishedAt).calendar()}
-                                //         </p>
-                                //     </div>
-                                // </div>
                                 <div key={index} className="border border-gray-300 rounded-lg overflow-hidden">
                                     {/* YouTube Video Embed */}
                                     <iframe
