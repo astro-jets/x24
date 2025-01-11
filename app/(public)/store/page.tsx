@@ -1,6 +1,7 @@
 "use client"
 
 import Loader from "@/components/loader/Loader";
+import Link from "next/link";
 import { BsMenuDown, BsShop } from "react-icons/bs";
 import { FaAngleDown } from "react-icons/fa";
 
@@ -15,6 +16,7 @@ const Store = () => {
                             <h2 className="text-2xl font-thin tracking-tight text-black border-black dark:border-white dark:text-white">
                                 Welcome to the shop ...
                             </h2>
+                            <Link href={'jkj'}>Clickhere</Link>
                         </div>
 
                         <div className="mt-4 w-30 justify-center items-center ml-auto flex space-x-2 relative backdrop-blur-lg dark:bg-[#0f0f0f5b] rounded-2xl p-1">
