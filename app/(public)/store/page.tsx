@@ -9,14 +9,13 @@ const Store = () => {
     return (
         <>
             <Loader />
-            <div className="w-full h-full bg-no-repeat bg-cover bg-[url('/images/x.jpg')] md:mt-0 p-0">
+            <div className="w-full h-full bg-no-repeat bg-cover bg-[url('/images/clothes/x.jpg')] md:mt-0 p-0">
                 <div className="w-full h-full backdrop-blur-lg bg-white/40 dark:bg-[#0f0f0f94] ">
                     <div className="h-full w-full mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                         <div className="typewriter flex justify-center items-center w-[85%]">
                             <h2 className="text-2xl font-thin tracking-tight text-black border-black dark:border-white dark:text-white">
                                 Welcome to the shop ...
                             </h2>
-                            <Link href={'jkj'}>Clickhere</Link>
                         </div>
 
                         <div className="mt-4 w-30 justify-center items-center ml-auto flex space-x-2 relative backdrop-blur-lg dark:bg-[#0f0f0f5b] rounded-2xl p-1">
@@ -30,7 +29,7 @@ const Store = () => {
                         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c8.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c8.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -47,7 +46,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -64,7 +63,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c2.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c2.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -81,7 +80,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c3.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c3.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -98,7 +97,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c9.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c9.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -115,7 +114,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c10.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c10.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -132,7 +131,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c4.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c4.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -149,7 +148,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c5.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c5.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -166,7 +165,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c6.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c6.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
@@ -183,7 +182,7 @@ const Store = () => {
                             </div>
                             <div className="group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 rounded-2xl p-2">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-2xl  lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img src="images/c7.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                                    <img src="images/clothes/c7.jpg" alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                 </div>
                                 <div className="mt-4 flex justify-between">
                                     <div>
