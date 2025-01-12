@@ -10,27 +10,7 @@ import PodcastTags from "@/components/slider/podcastTags/PodcastTags";
 import moment from "moment";
 import he from "he";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-const ChannelComponent = () => {
-    const [videos, setVideos] = useState<videosProps>([]);
-    useEffect(() => {
-        async function fetchVideos() {
-            const CHANNEL_ID = "UChjZB_B5f76x3ZkrASt348Q";
-            const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&maxResults=5&order=date`;
-
-            try {
-                const response = await fetch(endpoint);
-                const data = await response.json();
-                console.log("Data => ", data);
-                setVideos(data.items);
-            } catch (error) {
-                console.error("Error fetching videos:", error);
-            }
-        }
-        fetchVideos();
-    }, []);
-
-    const coverImage = "/images/podcasts/mcast.jpg"; // Replace with actual cover image URL
-    const podcastName = "Podcast Malawi"; // Dynamic podcast name
+const ChannelComponent = ({ podcastName, coverImage, videos, }: { podcastName: string; coverImage: string; videos: videosProps }) => {
     return (
         <div className="bg-[#111] text-white min-h-screen">
 
