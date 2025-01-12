@@ -1,7 +1,7 @@
 
 import Loader from "@/components/loader/Loader";
 import Head from "next/head"; // Import Head for SEO
-import ChannelComponent from "./channelComponent";
+import ChannelComponent from "@/components/channels/ChannelComponent";
 
 export default function YouTubeChannel() {
 
