@@ -10,12 +10,12 @@ import PodcastTags from "@/components/slider/podcastTags/PodcastTags";
 import moment from "moment";
 import he from "he";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-const ChannelComponent = ({ podcastName, coverImage, videos, }: { podcastName: string; coverImage: string; videos: videosProps }) => {
+const ChannelComponent = ({ podcastName, coverImage, videos, channelId }: { channelId: string; podcastName: string; coverImage: string; videos: videosProps }) => {
     return (
         <div className="bg-[#111] text-white min-h-screen">
 
             {
-                videos.length > 0 ?
+                videos && videos.length > 0 ?
                     <>
                         {/* Header */}
                         <div className="sticky top-0 bg-[#222] flex items-center px-4 py-3 min-20 shadow-md z-99">
@@ -64,7 +64,7 @@ const ChannelComponent = ({ podcastName, coverImage, videos, }: { podcastName: s
                                     />
                                     <h2 className="text-xl font-semibold">Reels</h2>
                                 </div>
-                                <Reels />
+                                <Reels channelId={channelId} />
                             </div>
 
                             <div className="text-white px-4 w-full space-y-4">

@@ -9,9 +9,12 @@ import { BsCart, BsSoundwave, BsPeople } from "react-icons/bs";
 import Player from "../player/player2";
 import DarkModeSwitcher from "../themeMode/ThemeMode";
 import { useAudioStore } from "@/app/stores/MusicStore";
+import useColorMode from "@/hooks/useColorMode";
+
 
 
 const MobileNav = () => {
+  useColorMode()
   const [showPlayer, setShowPlayer] = useState(false)
   const { audio } = useAudioStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -95,7 +98,7 @@ const MobileNav = () => {
         }
         {/* Nabar */}
         < div className="w-full z-9999 flex justify-center items-center fixed bottom-1">
-          <div className=" flex px-2 py-4 items-center justify-around backdrop-blur-lg shadow-sm shadow-red-500 md:bg-white/20   w-[98%] rounded-2xl h-15 ">
+          <div className=" flex px-2 py-4 items-center justify-around backdrop-blur-lg shadow-sm shadow-red-500 bg-black/50   w-[98%] rounded-2xl h-15 ">
 
             <div className="flex flex-col space-y-1  items-center" onClick={() => { setIsMenuOpen(false) }}>
               <BsCart color="#fff" size={20} />

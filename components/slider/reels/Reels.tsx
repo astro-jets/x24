@@ -9,11 +9,11 @@ const OPTIONS: EmblaOptionsType = { align: 'start', loop: false }
 const SLIDE_COUNT = 5
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
-function Reels() {
+function Reels({ channelId }: { channelId: string }) {
     return (
 
         <div className="w-full h-full py-2">
-            <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+            <EmblaCarousel channelId={channelId} slides={SLIDES} options={OPTIONS} />
         </div>
 
 

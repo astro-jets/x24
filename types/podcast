@@ -1,0 +1,6 @@
+export type PodcastPropa = {
+  id?: string;
+  name: string;
+  shows: string[];
+  status?: string;
+};

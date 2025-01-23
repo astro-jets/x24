@@ -8,7 +8,7 @@ const YouTubeVideos = () => {
     useEffect(() => {
         async function fetchVideos() {
             const CHANNEL_ID = 'UChjZB_B5f76x3ZkrASt348Q';
-            const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${'AIzaSyCmav_D2l3_A0V5sjU43tY4r9Xebl3Uq3o'}&channelId=${CHANNEL_ID}&part=snippet&type=video&maxResults=5`;
+            const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&maxResults=5`;
 
             try {
                 const response = await fetch(endpoint);

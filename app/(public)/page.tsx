@@ -1,19 +1,19 @@
-"use client"
 
 import TopTenCharts from "@/components/charts/TopTen";
 import Loader from "@/components/loader/Loader";
 import Search from "@/components/search/Form";
+import MobileSearchBar from "@/components/search/MobileSearchBar";
 import RightSideBar from "@/components/sidbebar/Sidebar";
 import ArtistsSlider from "@/components/slider/artists/Artists";
 import EventsSlider from "@/components/slider/events/Events";
 import PodcastSlider from "@/components/slider/podcasts/Podcasts";
 import Slider from "@/components/slider/top/Slider";
-import { useState } from "react";
+
 import { BsBell, BsGear, BsPeople, BsSearch } from "react-icons/bs";
 import { LiaRecordVinylSolid } from "react-icons/lia";
 
 const LandingPage = () => {
-    const [showSearch, setShowSearch] = useState(false);
+
     return (
         <>
             <Loader />
@@ -38,17 +38,7 @@ const LandingPage = () => {
                             <p className="text-black dark:text-white text-sm w-1/3 pl-3 border-0 border-l-2 border-l-red-600">
                                 Top Artists This Year
                             </p>
-                            <div className="w-[30%] flex space-x-3 h-10 items-center">
-                                <BsSearch size={20} color="white" onClick={() => { setShowSearch(!showSearch) }} />
-                                {showSearch &&
-                                    <input
-                                        type="text"
-                                        placeholder="search"
-                                        className="w-full bg-transparent outline-none text-white px-3 py-3border-b-red-500 border-b-[1px] border-b-red-500 border-0 placeholder:text-gray-700"
-                                    />
-                                }
-
-                            </div>
+                            <MobileSearchBar />
                             <div className="flex justify-between items-center w-[12%]">
                                 <BsGear size={20} color="white" />
                                 <BsBell size={20} color="white" />

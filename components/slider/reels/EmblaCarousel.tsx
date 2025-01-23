@@ -11,16 +11,16 @@ import moment from 'moment'
 type PropType = {
   slides: number[]
   options?: EmblaOptionsType
+  channelId: string
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { options } = props
+  const { options, channelId } = props
   const [emblaRef] = useEmblaCarousel(options);
   const [reels, setReels] = useState<videosProps>([]);
   useEffect(() => {
     async function fetchReels() {
-      const CHANNEL_ID = 'UChjZB_B5f76x3ZkrASt348Q';
-      const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&maxResults=5&order=date&videoDuration=short`;
+      const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}&channelId=${channelId}&part=snippet&type=video&maxResults=15&order=date&videoDuration=short`;
 
       try {
         const response = await fetch(endpoint);
