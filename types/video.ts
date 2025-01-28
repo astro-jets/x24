@@ -29,4 +29,13 @@ export type channelDetailsProps = {
     videoCount: string; // Total uploaded videos
     viewCount: string; // Total video views
   };
+  brandingSettings?: {
+    channel: {
+      title: string;
+      description: string;
+    };
+    image: {
+      bannerExternalUrl: string;
+    };
+  };
 };

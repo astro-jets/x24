@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { videosProps } from "@/types/video";
+import { formatNumber } from "@/helpers/helpers";
+import { channelDetailsProps, videosProps } from "@/types/video";
 import Image from "next/image";
 import { BsBell, BsFire } from "react-icons/bs";
 import { MdOutlineMovie } from "react-icons/md";
@@ -10,7 +11,14 @@ import PodcastTags from "@/components/slider/podcastTags/PodcastTags";
 import moment from "moment";
 import he from "he";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-const ChannelComponent = ({ podcastName, coverImage, videos, channelId }: { channelId: string; podcastName: string; coverImage: string; videos: videosProps }) => {
+const ChannelComponent = ({ videos, channelId, channelDetails }: { channelId: string; channelDetails: channelDetailsProps; videos: videosProps }) => {
+    const [coverImage, setCoverImage] = useState('');
+
+    useEffect(() => {
+        if (channelDetails.brandingSettings?.image) {
+            setCoverImage(channelDetails.brandingSettings.image.bannerExternalUrl);
+        } else { setCoverImage(channelDetails.snippet.thumbnails.high.url); }
+    }, [])
     return (
         <div className="bg-[#111] text-white min-h-screen">
 
@@ -19,10 +27,13 @@ const ChannelComponent = ({ podcastName, coverImage, videos, channelId }: { chan
                     <>
                         {/* Header */}
                         <div className="sticky top-0 bg-[#222] flex items-center px-4 py-3 min-20 shadow-md z-99">
-                            <h1 className="text-lg font-semibold">{podcastName}</h1>
+                            <h1 className="text-lg font-semibold">{channelDetails.snippet.title}</h1>
                             <div className="ml-auto flex items-center space-x-4">
-                                <button className="text-gray-400 hover:text-white"><BsFire color="red" size={20} /></button>
-                                <button className="text-gray-400 hover:text-white"><BsBell color="white" size={20} /></button>
+                                <button className="text-white hover:text-white items-center justify-center flex flex-col space-y-2">
+                                    <BsFire color="red" size={20} />
+                                    <span className="text-sm font-thin"> {formatNumber(parseInt(channelDetails.statistics.subscriberCount))}</span>
+                                </button>
+                                {/* <button className="text-gray-400 hover:text-white"><BsBell color="white" size={20} /></button> */}
                             </div>
                         </div>
                         {/* Top Cover Section */}
@@ -37,14 +48,14 @@ const ChannelComponent = ({ podcastName, coverImage, videos, channelId }: { chan
                             <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center px-4">
                                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white">
                                     <Image
-                                        src={coverImage}
+                                        src={channelDetails.snippet.thumbnails.high.url}
                                         alt="Profile Image"
                                         width={128}
                                         height={128}
                                         className="object-cover"
                                     />
                                 </div>
-                                <h1 className="text-2xl font-bold mt-4">{podcastName}</h1>
+                                <h1 className="text-2xl font-bold mt-4">{channelDetails.snippet.title}</h1>
                             </div>
                         </div>
 

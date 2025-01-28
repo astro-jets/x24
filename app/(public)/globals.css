@@ -128,7 +128,18 @@ header {
   }
 }
 
-@keyframes closeMenu {
+@keyframes closeMenu{
+  0% {
+    clip-path: circle(150% at 50% 50%);
+}
+
+50% {
+  clip-path: circle(70% at 75% 75%);
+}
+
+100% {
+  clip-path: circle(0% at 100% 100%);
+}
 }
 
 @keyframes rotate {

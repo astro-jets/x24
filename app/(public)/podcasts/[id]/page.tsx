@@ -16,7 +16,7 @@ export default async function YouTubeChannel({ params }: { params: { id: string 
 
     const fetchChannelDetails = async (channelId: string) => {
         try {
-            const endpoint = `https://www.googleapis.com/youtube/v3/channels?key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}&id=${channelId}&part=snippet`;
+            const endpoint = `https://www.googleapis.com/youtube/v3/channels?key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}&id=${channelId}&part=snippet,brandingSettings,statistics,contentDetails`;
             const response = await fetch(endpoint);
 
             if (!response.ok) {
@@ -36,7 +36,10 @@ export default async function YouTubeChannel({ params }: { params: { id: string 
     return (
         <>
             <Loader />
-            <ChannelComponent channelId={channelId} podcastName={channelDetails.snippet.title} coverImage={channelDetails.snippet.thumbnails.high.url} videos={videos} />
+            <ChannelComponent
+                channelId={channelId}
+                channelDetails={channelDetails}
+                videos={videos} />
 
         </>
     );

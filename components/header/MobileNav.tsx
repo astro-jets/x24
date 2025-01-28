@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { FaMicrophone, FaTheaterMasks, FaUsers } from "react-icons/fa"
 import { LiaUserAstronautSolid } from "react-icons/lia"
 import { IoMdHeadset } from "react-icons/io"
@@ -11,91 +11,124 @@ import DarkModeSwitcher from "../themeMode/ThemeMode";
 import { useAudioStore } from "@/app/stores/MusicStore";
 import useColorMode from "@/hooks/useColorMode";
 
+//GSAP
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { CustomEase } from "gsap/CustomEase";
+import { useGSAP } from '@gsap/react'
 
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, CustomEase);
 
 const MobileNav = () => {
   useColorMode()
   const [showPlayer, setShowPlayer] = useState(false)
   const { audio } = useAudioStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const containerRef = useRef<HTMLDivElement>(null);
+  const tl = useRef<GSAPAnimation>();
 
   useEffect(() => {
-    setShowPlayer(false);
     const links = document.querySelectorAll('.navbar-item');
-    links.forEach(e => {
+    links?.forEach(e => {
       e.addEventListener('click', () => {
         setIsMenuOpen(false);
       })
     })
   }, []);
 
+
+  useGSAP(() => {
+
+    const topLinks = document.querySelectorAll(".topLink")
+    const navLinks = document.querySelectorAll(".navbar-item")
+    if (isMenuOpen) {
+      tl.current = gsap.timeline({ paused: true }).fromTo(topLinks,
+        { y: -100 },
+        { y: 0, duration: .4, ease: "power2.in", stagger: 0.1, delay: -0.5 }
+      ).fromTo(navLinks, { x: -130 }, { x: 0, duration: 1, stagger: 0.1, ease: 'power4.in', delay: -1.6 })
+    }
+
+  }, [isMenuOpen]);
+
+
+  useEffect(() => {
+    console.log("Changed => ", tl)
+    if (isMenuOpen) {
+      tl.current?.play();
+    } else { tl.current?.reverse() }
+  }, [isMenuOpen])
+
   return (
     <>
-      <nav className="relative flex flex-col w-screen max-h-screen overflow-hidden z-999">
+      <nav ref={containerRef} className="relative flex flex-col w-screen max-h-screen overflow-hidden z-999">
         {/* Menu */}
-        {isMenuOpen &&
-          <div className={`mobile-menu fixed z-999 left-0  bottom-0 backdrop-blur-lg bg-[#ffffff9d] dark:bg-[#000000d0] w-screen h-screen overflow-hidden scroll-m-0   ${isMenuOpen ? 'show' : 'close'}`} id="navmenu">
-            <div className="w-full grid grid-cols-3 mt-6 px-3">
-              <div className="flex flex-col space-y-2 items-center">
-                <div className=" w-12 h-12 flex items-center justify-center py-2 px-4 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
-                  <LiaUserAstronautSolid
-                    size={20}
-                    color="white"
-                    className="fill-black dark:fill-white" />
-                </div>
-                <p className="text-black dark:text-white text-xs">Profile</p>
+        {/* {isMenuOpen && */}
+        <div className={`links mobile-menu fixed z-999 left-0  bottom-0 backdrop-blur-lg bg-[#ffffff9d] dark:bg-[#000000d0] w-screen h-screen overflow-hidden scroll-m-0   ${isMenuOpen ? 'show' : 'close'}`} id="navmenu">
+          <div className="w-full grid grid-cols-3 mt-6 px-3">
+
+            <div className="topLink flex flex-col space-y-2 items-center">
+              <div className=" w-12 h-12 flex items-center justify-center py-2 px-4 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
+                <LiaUserAstronautSolid
+                  size={20}
+                  color="white"
+                  className="fill-black dark:fill-white" />
               </div>
-              <Link href="/charts" className="flex flex-col space-y-2 items-center">
-                <div className=" w-12 h-12 flex items-center justify-center py-2 px-4 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
-                  <IoMdHeadset
-                    size={20}
-                    color="white"
-                    className="fill-black dark:fill-white" />
-                </div>
-                <p className="text-black dark:text-white text-xs">Charts</p>
-              </Link>
-              <div className="flex flex-col space-y-2 items-center justify-center">
-                <div className=" w-15 h-12 flex items-center justify-start py-2 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
-                  <DarkModeSwitcher />
-                </div>
-                <p className="text-black dark:text-white text-xs">Theme</p>
-              </div>
+              <p className="text-black dark:text-white text-xs">Profile</p>
             </div>
-            <ul className="navbar-nav ms-auto space-y-6">
-              <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
-                <Link href="/blogs" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
-                  <BsPeople size={20} color="white" className="fill-black dark:fill-white" />
-                  <p>Timeline</p>
-                </Link>
-              </li>
-              <li className="navbar-item w-full" onClick={() => { setIsMenuOpen(false) }}>
-                <Link href="/store" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
-                  <BsCart size={20} color="white" className="fill-black dark:fill-white" />
-                  <p className="">Store</p>
-                </Link>
-              </li>
-              <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
-                <Link href="/artists" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
-                  <FaUsers size={20} color="white" className="fill-black dark:fill-white" />
-                  <p>Artists</p>
-                </Link>
-              </li>
-              <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
-                <Link href="/events" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
-                  <FaTheaterMasks size={20} color="white" className="fill-black dark:fill-white" />
-                  <p>Events</p>
-                </Link>
-              </li>
-              <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
-                <Link href="/podcasts" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
-                  <FaMicrophone size={20} color="white" className="fill-black dark:fill-white" />
-                  <p>Podcasts</p>
-                </Link>
-              </li>
-            </ul>
+
+            <Link href="/charts" className="topLink flex flex-col space-y-2 items-center">
+              <div className=" w-12 h-12 flex items-center justify-center py-2 px-4 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
+                <IoMdHeadset
+                  size={20}
+                  color="white"
+                  className="fill-black dark:fill-white" />
+              </div>
+              <p className="text-black dark:text-white text-xs">Charts</p>
+            </Link>
+
+            <div className="topLink flex flex-col space-y-2 items-center justify-center">
+              <div className=" w-15 h-12 flex items-center justify-start py-2 rounded-2xl bg-white dark:bg-gray-950 shadow-xl  shadow-[#ff00005e]">
+                <DarkModeSwitcher />
+              </div>
+              <p className="text-black dark:text-white text-xs">Theme</p>
+            </div>
           </div>
-        }
+          <ul className="navbar-nav ms-auto space-y-6">
+            <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
+              <Link href="/posts" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
+                <BsPeople size={20} color="white" className="fill-black dark:fill-white" />
+                <p>Timeline</p>
+              </Link>
+            </li>
+            <li className="navbar-item w-full" onClick={() => { setIsMenuOpen(false) }}>
+              <Link href="/store" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
+                <BsCart size={20} color="white" className="fill-black dark:fill-white" />
+                <p className="">Store</p>
+              </Link>
+            </li>
+            <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
+              <Link href="/artists" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
+                <FaUsers size={20} color="white" className="fill-black dark:fill-white" />
+                <p>Artists</p>
+              </Link>
+            </li>
+            <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
+              <Link href="/events" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
+                <FaTheaterMasks size={20} color="white" className="fill-black dark:fill-white" />
+                <p>Events</p>
+              </Link>
+            </li>
+            <li className="navbar-item" onClick={() => { setIsMenuOpen(false) }}>
+              <Link href="/podcasts" className="flex space-x-2 items-center text-black dark:text-white  py-2 px-4 rounded-lg w-4/5">
+                <FaMicrophone size={20} color="white" className="fill-black dark:fill-white" />
+                <p>Podcasts</p>
+              </Link>
+            </li>
+          </ul>
+        </div>
+        {/* } */}
+
         {/* Nabar */}
         < div className="w-full z-9999 flex justify-center items-center fixed bottom-1">
           <div className=" flex px-2 py-4 items-center justify-around backdrop-blur-lg shadow-sm shadow-red-500 bg-black/50   w-[98%] rounded-2xl h-15 ">

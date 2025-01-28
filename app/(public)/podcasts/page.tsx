@@ -8,6 +8,7 @@ import { FaMicrophoneAlt, FaTheaterMasks } from "react-icons/fa";
 
 const Podcasts = async () => {
     const channelIds = [
+        'UCv36EOUNAx2_l_5lmunaWNA',
         'UChjZB_B5f76x3ZkrASt348Q',
         'UCS_65yasWSBMLr5hPco3GxQ',
         'UCnPt6wUx9nmVcFWkV8fBUEg',
