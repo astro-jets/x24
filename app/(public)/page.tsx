@@ -8,11 +8,41 @@ import ArtistsSlider from "@/components/slider/artists/Artists";
 import EventsSlider from "@/components/slider/events/Events";
 import PodcastSlider from "@/components/slider/podcasts/Podcasts";
 import Slider from "@/components/slider/top/Slider";
+import { channelDetailsProps } from "@/types/video";
 
 import { BsBell, BsGear, BsPeople, BsSearch } from "react-icons/bs";
 import { LiaRecordVinylSolid } from "react-icons/lia";
 
-const LandingPage = () => {
+const LandingPage = async () => {
+    const channelIds = [
+        'UCv36EOUNAx2_l_5lmunaWNA',
+        'UChjZB_B5f76x3ZkrASt348Q',
+        'UCS_65yasWSBMLr5hPco3GxQ',
+        'UCnPt6wUx9nmVcFWkV8fBUEg',
+        'UC7BXdXFxVgMPKmBeDgx2QrQ',
+        'UC1qC9CHrHw-m_xH73gRS0mw',
+        'UCQ2bTOhnT-fttJV7PYXMFcA',
+    ];
+
+    const fetchChannels = async () => {
+        const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY
+        const fetchPromises = channelIds.map(async (channelId) => {
+            const endpoint = `https://www.googleapis.com/youtube/v3/channels?key=${API_KEY}&id=${channelId}&part=snippet`;
+            const response = await fetch(endpoint);
+            return await response.json();
+        });
+
+        try {
+            const allChannels = await Promise.all(fetchPromises);
+            console.log("Channels => ", allChannels)
+            return (allChannels.flatMap((data) => data.items));
+        } catch (error) {
+            console.error('Error fetching channels:', error);
+            // setError(error);
+        }
+    }
+
+    const channels = await fetchChannels();
 
     return (
         <>
@@ -100,7 +130,7 @@ const LandingPage = () => {
 
                                     {/* Featured Podcasts */}
                                     <div className="flex flex-col h-70  w-full items-start">
-                                        <PodcastSlider />
+                                        <PodcastSlider channels={channels as channelDetailsProps[]} />
                                     </div>
 
                                     {/* Chart 3: Popular Artists */}
