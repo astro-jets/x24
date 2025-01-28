@@ -65,7 +65,7 @@ const Store = () => {
 
                         <div className="  h-full  mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                             {Array.from({ length: 12 }, (_, index) => (
-                                <div className="shopItems h-[65vh] overflow-hidden">
+                                <div key={index} className="shopItems h-[65vh] overflow-hidden">
                                     <div
                                         key={index}
                                         className="shopItem group relative backdrop-blur-lg dark:bg-[#0f0f0f5b] bg-white/40 shadow-2 rounded-2xl p-2"
